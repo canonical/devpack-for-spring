@@ -38,7 +38,7 @@ jobs:
           path: ${{ steps.devpack-for-spring.outputs.snap }}
 
       - name: Build manifest
-        id: devpack-for-spring
+        id: devpack-for-spring-manifest
         uses: snapcore/action-build@v1
         with:
           path: devpack-for-spring-manifest
@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: devpack-for-spring-manifest
-          path: ${{ steps.devpack-for-spring.outputs.snap }}
+          path: ${{ steps.devpack-for-spring-manifest.outputs.snap }}
 
 
   snapcraft-publish:
