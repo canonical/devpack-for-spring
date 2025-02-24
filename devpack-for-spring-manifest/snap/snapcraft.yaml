@@ -1,0 +1,38 @@
+name: devpack-for-spring-manifest
+base: core24
+version: 1.0
+adopt-info: devpack-for-spring-manifest
+summary: The list of all available content snaps for Spring®
+description: |
+  The Devpack for Spring® manifest is a list of all content snaps
+  available to be downloaded by the Devpack for Spring® snap.
+
+grade: stable
+confinement: strict
+
+slots:
+  devpack-for-spring-manifest:
+    interface: content
+    content: devpack-for-spring-manifest
+    allow-auto-connection:
+      plug-publisher-id:
+        - $SLOT_PUBLISHER_ID
+    source:
+      read:
+        - $SNAP
+
+parts:
+  devpack-for-spring-manifest:
+    plugin: dump
+    source: .
+    build-packages:
+      - git
+      - yamllint
+      - yq
+    override-build: |
+      craftctl default
+      yamllint supported.yaml
+      craftctl set version="$(yq .version supported.yaml)"
+    prime:
+      - supported.yaml
+      - LICENSE

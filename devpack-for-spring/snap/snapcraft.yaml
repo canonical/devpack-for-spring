@@ -1,0 +1,67 @@
+name: devpack-for-spring
+base: bare
+build-base: core24
+version: '0.10'
+summary: Development tools for Spring® projects
+description: |
+  Development tools for Spring® projects.
+
+  The snap packages a tool based on Spring CLI project with additional
+  commands.
+
+  Snap documentation:
+  https://github.com/canonical/spring-boot-snap/blob/main/devpack-for-spring/README.md
+
+  Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: classic # use 'strict' once you have the right plugs and slots
+
+plugs:
+  devpack-for-spring-content:
+    interface: content
+    content: devpack-for-spring-content
+    target: $SNAP/maven-repo
+
+  devpack-for-spring-manifest:
+    interface: content
+    content: devpack-for-spring-content
+    target: $SNAP/manifest
+
+parts:
+  build-cli:
+    plugin: nil
+    source: https://github.com/canonical/spring-cli
+    source-type: git
+    build-packages:
+      - openjdk-17-jdk-headless
+    override-build: |
+      ./gradlew --no-daemon -Dorg.gradle.project.buildDir=$CRAFT_STAGE/ build -x test
+
+# gradlew exits shell, use a separate part to install the build
+# result
+  install-cli:
+    after:
+      - build-cli
+    plugin: nil
+    source: .
+    override-build: |
+        rm -f $CRAFT_STAGE/libs/*-plain.jar
+        mkdir -p $CRAFT_PART_INSTALL/cli
+        cp $CRAFT_STAGE/libs/*.jar $CRAFT_PART_INSTALL/cli/
+        cp $CRAFT_PROJECT_DIR/cli.sh $CRAFT_PART_INSTALL/cli/
+        craftctl default
+
+  java-runtime:
+    plugin: nil
+    build-attributes:
+      - enable-patchelf
+    stage-packages:
+      - openjdk-21-jdk-headless
+    override-build: |
+      craftctl default
+      (cd $CRAFT_PART_INSTALL && mkdir -p usr/bin && ln -sf --relative usr/lib/jvm/java-21-openjdk-${CRAFT_ARCH_BUILD_FOR}/bin/java usr/bin/java)
+
+apps:
+  devpack-for-spring:
+    command: cli/cli.sh

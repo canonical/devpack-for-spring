@@ -1,0 +1,78 @@
+version: 1
+content-snaps:
+  content-for-spring-cli:
+    upstream: https://github.com/spring-projects/spring-cli
+    version: 0.9.0
+    channel: latest/edge
+    mount: /spring-cli
+    oss-eol: n/a
+    name: content-for-spring-cli
+    build-jdk: openjdk-17-jdk-headless
+    summary: Rebuild of Spring® CLI sources
+    description: |
+      Rebuild of Spring® CLI sources.
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: false
+    tool: true
+
+  content-for-spring-boot-34:
+    upstream: https://github.com/spring-projects/spring-boot
+    version: 3.4.2
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: 2025-12-31
+    name: content-for-spring-boot-34
+    build-jdk: openjdk-17-jdk-headless
+    summary: Rebuild of Spring® Boot Framework sources v3.4.x
+    description: |
+      Rebuild of Spring® Boot Framework sources v3.4.x
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: false
+
+  content-for-spring-boot-runtime-33:
+    upstream: https://github.com/spring-projects/spring-boot
+    version: 3.3.8
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: 2025-06-30
+    name: content-for-spring-boot-runtime-33
+    build-jdk: openjdk-17-jdk-headless
+    summary: Rebuild of Spring® Boot Framework sources v3.3.x
+    description: |
+      Rebuild of Spring® Boot Framework sources v3.3.x
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: false
+
+  content-for-spring-framework-62:
+    upstream: https://github.com/spring-projects/spring-framework
+    version: 6.2.3
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: 2026-06-30
+    name: content-for-spring-framework-62
+    build-jdk: openjdk-17-jdk
+    summary: Rebuild of Spring® Framework sources v6.2.x
+    description: |
+      Rebuild of Spring® Framework sources v6.2.x.
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: true
+
+  content-for-spring-framework-61:
+    upstream: https://github.com/spring-projects/spring-framework
+    version: 6.1.14
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: 2026-06-30
+    name: content-for-spring-framework-61
+    build-jdk: openjdk-17-jdk
+    summary: Rebuild of Spring® Framework sources v6.1.x
+    description: |
+      Rebuild of Spring® Framework sources v6.1.x.
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    extra-command: -x test
+    lts: true
