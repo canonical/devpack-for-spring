@@ -44,7 +44,7 @@ jobs:
           path: devpack-for-spring-manifest
 
       - name: Upload Snap to workflow artifacts
-        id: upload-artifact
+        id: upload-artifact-manifest
         uses: actions/upload-artifact@v4
         with:
           name: devpack-for-spring-manifest
