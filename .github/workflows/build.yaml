@@ -19,7 +19,6 @@ jobs:
         os:
           - [self-hosted, large, jammy, X64]
     runs-on: ${{ matrix.os }}
-    needs: unit-test
     steps:
       - uses: actions/checkout@v4
         id: checkout
