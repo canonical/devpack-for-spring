@@ -1,0 +1,44 @@
+name: ${name}
+base: bare
+build-base: core24
+version: '${version}'
+summary: ${summary}
+license: ${license}
+description: |
+${description}
+
+grade: devel
+confinement: strict
+
+slots:
+  ${name}:
+    interface: content
+    content: ${name}
+    source:
+      read:
+        - $SNAP
+
+parts:
+  gradle-init:
+    plugin: nil
+    source: .
+    override-build: |
+      cp init.gradle $CRAFT_STAGE/
+
+  content:
+    after:
+      - gradle-init
+    plugin: nil
+    source: ${upstream}
+    source-type: git
+    source-tag: v${version}
+    build-packages:
+      - ${build-jdk}
+    override-build: |
+      echo 127.0.0.1 $(hostname) >> /etc/hosts
+      mkdir -p $HOME/.gradle
+      echo 'systemProp.user.name=spring-builds+github' >> $HOME/.gradle/gradle.properties
+      echo 'systemProp.org.gradle.internal.launcher.welcomeMessageEnabled=false' >> $HOME/.gradle/gradle.properties
+      echo 'org.gradle.daemon=false' >> $HOME/.gradle/gradle.properties
+      echo 'org.gradle.daemon=4' >> $HOME/.gradle/gradle.properties
+      ./gradlew -PdeploymentRepository=$CRAFT_PART_INSTALL/maven-repo build publishAllPublicationsToDeploymentRepository ${extra-command}
