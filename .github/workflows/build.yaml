@@ -27,7 +27,7 @@ jobs:
         id: devpack-for-spring
         uses: snapcore/action-build@v1
         with:
-          path: devpack-for-spring
+          path: devpack-for-spring/
 
       - name: Upload Snap to workflow artifacts
         id: upload-artifact
