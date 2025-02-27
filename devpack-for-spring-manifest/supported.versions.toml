@@ -1,5 +1,5 @@
 [libraries]
-spring-boot-34 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.4.2" }
-spring-boot-33 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.3.8" }
-spring-core-61 = { group = "org.springframework", name = "spring-core", version = "6.1.0" }
-spring-core-62 = { group = "org.springframework", name = "spring-core", version = "6.2.0" }
+spring-boot-34 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.4.3" }
+spring-boot-33 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.3.9" }
+spring-core-61 = { group = "org.springframework", name = "spring-core", version = "6.1.17" }
+spring-core-62 = { group = "org.springframework", name = "spring-core", version = "6.2.3" }
