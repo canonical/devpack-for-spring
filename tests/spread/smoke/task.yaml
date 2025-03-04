@@ -1,0 +1,5 @@
+summary: check that devpack for spring works when installed
+
+execute: |
+  set -ex
+  devpack-for-spring --help | grep Devpack

@@ -1,0 +1,16 @@
+summary: check that Maven uses the content snap
+
+execute: |
+  set -ex
+  # use snap-provided JVM
+  export PATH=$PATH:/snap/devpack-for-spring/current/usr/bin/
+  devpack-for-spring snap install content-for-spring-boot-35
+  BOOT_VERSION=`snap info  content-for-spring-boot-35 | grep "installed:" | awk -F' ' '{ print $2}'`
+  devpack-for-spring boot start --path foo --project maven-project \
+   --language java --boot-version $BOOT_VERSION --group sample \
+   --artifact sample --name sample --description sample \
+   --package-name sample --packaging jar \
+   --java-version 17 --version 1 --dependencies web
+  (cd foo && ./mvnw package --debug > debug.log 2>&1)
+  # We should be using the local repository for maven
+  grep "Downloading from content-for-spring-boot-35-plugins: file:///snap/content-for-spring-boot-35/current/maven-repo/org/springframework/boot/spring-boot-maven-plugin/${BOOT_VERSION}/spring-boot-maven-plugin-${BOOT_VERSION}.jar" foo/debug.log
