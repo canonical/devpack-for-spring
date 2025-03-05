@@ -1,0 +1,16 @@
+summary: check that Gradle uses content snap
+
+execute: |
+  set -ex
+  # use snap-provided JVM
+  export PATH=$PATH:/snap/devpack-for-spring/current/usr/bin/
+  devpack-for-spring snap install content-for-spring-boot-35
+  BOOT_VERSION=`snap info  content-for-spring-boot-35 | grep "installed:" | awk -F' ' '{ print $2}'`
+  devpack-for-spring boot start --path foo --project gradle-project \
+   --language java --boot-version $BOOT_VERSION --group sample \
+   --artifact sample --name sample --description sample \
+   --package-name sample --packaging jar \
+   --java-version 17 --version 1 --dependencies web
+  (cd foo && ./gradlew --debug > debug.log 2>&1)
+  # We should be using the local repository for gradle
+  grep "Using org.springframework.boot:spring-boot-loader-tools:${BOOT_VERSION} from Maven repository 'plugin-content-for-spring-boot-35'" foo/debug.log
