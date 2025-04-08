@@ -1,0 +1,73 @@
+format:
+  gradle:
+    id: io.spring.javaformat
+    version: 0.0.43
+    class-name: io.spring.javaformat.gradle.SpringJavaFormatPlugin
+    default-task: format
+    description: Format the source code
+    tasks:
+      - format
+    repository: gradlePluginPortal()
+    classpath: "io.spring.javaformat:io.spring.javaformat.gradle.plugin:0.0.43"
+  maven:
+    id: io.spring.javaformat:spring-javaformat-maven-plugin
+    version: 0.0.43
+    default-task: :apply
+    description: Format the source code
+    tasks:
+      - :apply
+dependencies:
+  gradle:
+    id: io.github.rockcrafters.rockcraft
+    version: 1.0.0
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.0.0"
+    class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
+    repository: gradlePluginPortal()
+    default-task: dependencies-export
+    description: |
+      Save project dependencies
+    tasks:
+      - dependencies-export
+    # Gradle Kotlin DSL snippet to configure the defaults
+    default-configuration:
+  maven:
+    id: io.github.rockcrafters:rockcraft-maven-plugin
+    version: 1.0.0
+    default-task: :create-build-rock
+    description: |
+      Save project dependencies
+    tasks:
+      - :create-build-rock
+rockcraft:
+  gradle:
+    id: io.github.rockcrafters.rockcraft
+    version: 1.0.0
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.0.0"
+    class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
+    repository: gradlePluginPortal()
+    default-task: build-rock
+    description: |
+      Plugin for rock image generation
+    tasks:
+      - create-rock
+      - build-rock
+      - create-build-rock
+      - build-build-rock
+      - push-rock
+      - push-build-rock
+    # Gradle Kotlin DSL snippet to configure the defaults
+    default-configuration: |
+          configure<com.canonical.rockcraft.builder.RockcraftOptions> {
+              setTargetRelease(21)
+          }
+  maven:
+    id: io.github.rockcrafters:rockcraft-maven-plugin
+    version: 1.0.0
+    default-task: install :create-rock :build-rock
+    description: |
+      Plugin for rock image generation
+    tasks:
+      - install :create-rock
+      - install :create-rock :build-rock
+      - :create-build-rock
+      - install :create-rock :build-rock :push-rock
