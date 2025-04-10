@@ -1,7 +1,7 @@
 name: devpack-for-spring
 base: bare
 build-base: core24
-version: '0.12'
+version: '1.0.0'
 summary: Development tools for Spring® projects
 description: |
   Development tools for Spring® projects.
