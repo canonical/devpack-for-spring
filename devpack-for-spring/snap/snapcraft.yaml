@@ -21,7 +21,7 @@ parts:
   build-cli:
     plugin: nil
     source: https://github.com/canonical/spring-cli
-    source-tag: v0.10.0-c2
+    source-tag: v0.10.0-c2.1
     source-type: git
     build-packages:
       - openjdk-17-jdk-headless
