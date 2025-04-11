@@ -1,6 +1,7 @@
 name: devpack-for-spring-manifest
 build-base: core24
 base: bare
+license: Apache-2.0
 adopt-info: devpack-for-spring-manifest
 summary: The list of all available content snaps for Spring®
 description: |
