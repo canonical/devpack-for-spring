@@ -19,8 +19,8 @@ format:
 dependencies:
   gradle:
     id: io.github.rockcrafters.rockcraft
-    version: 1.1.0
-    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.0"
+    version: 1.1.1
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.1"
     class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
     repository: gradlePluginPortal()
     default-task: dependencies-export
@@ -32,7 +32,7 @@ dependencies:
     default-configuration:
   maven:
     id: io.github.rockcrafters:rockcraft-maven-plugin
-    version: 1.1.0
+    version: 1.1.1
     default-task: :create-build-rock
     description: |
       Save project dependencies
@@ -41,8 +41,8 @@ dependencies:
 rockcraft:
   gradle:
     id: io.github.rockcrafters.rockcraft
-    version: 1.1.0
-    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.0"
+    version: 1.1.1
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.1"
     class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
     repository: gradlePluginPortal()
     default-task: build-rock
@@ -62,7 +62,7 @@ rockcraft:
           }
   maven:
     id: io.github.rockcrafters:rockcraft-maven-plugin
-    version: 1.1.0
+    version: 1.1.1
     default-task: install :create-rock :build-rock
     description: |
       Plugin for rock image generation

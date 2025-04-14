@@ -1,7 +1,7 @@
 name: devpack-for-spring
 base: bare
 build-base: core24
-version: '1.0.0'
+version: '1.0.1'
 license: Apache-2.0
 summary: Development tools for Spring® projects
 description: |
@@ -22,7 +22,7 @@ parts:
   build-cli:
     plugin: nil
     source: https://github.com/canonical/spring-cli
-    source-tag: v0.10.0-c2.2
+    source-tag: v0.10.0-c2.3
     source-type: git
     build-packages:
       - openjdk-17-jdk-headless
