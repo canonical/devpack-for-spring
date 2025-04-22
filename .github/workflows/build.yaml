@@ -3,6 +3,7 @@ name: Build on main
 on:
   push:
     branches: main
+    tags:
   pull_request:
     branches: main
   workflow_dispatch:
@@ -75,9 +76,17 @@ jobs:
           SNAP_FILE_NAME=$(ls ${ARTIFACT_PATH}/devpack-for-spring*.snap)
           echo "SNAP_PATH=${SNAP_FILE_NAME}" >> "$GITHUB_OUTPUT"
 
+      - name: Set release channel
+        run: |
+            if [[ "$GITHUB_REF_TYPE" == "tag" ]]; then
+              echo "CHANNEL=stable" >> $GITHUB_ENV
+            else
+              echo "CHANNEL=edge" >> $GITHUB_ENV
+            fi
+
       - uses: snapcore/action-publish@v1
         env:
           SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPSTORE_LOGIN }}
         with:
           snap: ${{ steps.gather-filename-devpack.outputs.SNAP_PATH }}
-          release: edge
+          release:  ${{ env.CHANNEL }}

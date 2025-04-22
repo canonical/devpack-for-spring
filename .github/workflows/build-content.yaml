@@ -7,6 +7,10 @@ on:
         description: name of the snap to release
         required: true
         default: all
+      channel:
+        description: channel to release
+        required: true
+        default: edge
 
 jobs:
     prepare:
@@ -68,4 +72,4 @@ jobs:
             SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.SNAPSTORE_LOGIN }}
           with:
             snap: ${{ steps.build.outputs.snap }}
-            release: edge
+            release: ${{ github.event.inputs.channel }}

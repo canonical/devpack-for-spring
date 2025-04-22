@@ -7,7 +7,7 @@ license: ${license}
 description: |
 ${description}
 
-grade: devel
+grade: stable
 confinement: strict
 
 slots:
