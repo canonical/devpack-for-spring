@@ -26,7 +26,9 @@ jobs:
 
       - name: Run content snap generator
         id: gen-content
-        run: make prepare
+        run: |
+          sudo apt-get update && sudo apt-get install -y make maven openjdk-21-jdk-headless
+          make prepare
 
       - name: Build devpack
         id: devpack-for-spring
