@@ -3,7 +3,6 @@ name: Build on main
 on:
   push:
     branches: main
-    tags:
   pull_request:
     branches: main
   workflow_dispatch:
@@ -59,7 +58,7 @@ jobs:
 
   snapcraft-publish:
     runs-on: ubuntu-latest
-    if: ${{ (contains(fromJSON('["push"]'), github.event_name) && github.ref_name == 'main') || contains(fromJSON('["workflow_dispatch"]'), github.event_name) }}
+    if: ${{ (contains(fromJSON('["push"]'), github.event_name) && github.ref_name == 'main') || env.GITHUB_REF_TYPE == 'tag' }}
     needs: snapcraft-build
     strategy:
       matrix:
