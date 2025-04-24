@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This prototype snap packages a command line tool to accelerate development of the Spring® projects.
+This snap packages a command line tool to accelerate development of the Spring® projects.
 
 ## Installation
 
