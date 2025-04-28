@@ -116,7 +116,7 @@ buildRockcraft {
 }
 ```
 
-A future version of devpack-for-spring will allow you to do it with a single command.
+A future version of `devpack-for-spring` will allow you to do it with a single command.
 
 To use the build rock as a devcontainer in vscode, add the following .devcontainer.json to your project:
 ```
