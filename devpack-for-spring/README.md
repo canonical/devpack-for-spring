@@ -65,7 +65,7 @@ snap install rockcraft --classic
 $ devpack-for-spring plugin dependencies
 ```
 
-The output is stored in target/build-rock/dependencies/ for Maven and build/build-rock/dependencies for Gradle.
+The output is stored in `target/build-rock/dependencies/` for Maven and `build/build-rock/dependencies/` for Gradle.
 
 The Rockcraft plugin generates a chiselled build image - an OCI image that includes a headless JDK, the build system (Gradle or Maven), and project dependencies.
 
