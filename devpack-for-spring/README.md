@@ -52,7 +52,7 @@ $ devpack-for-spring plugin format
 
 in the project root to format the source code of the project.
 
-The rockcraft plugin allows you to create a build container for the project - an OCI image that contains the build toolchain and project dependencies. The plugin needs the rockcraft snap installed:
+The Rockcraft plugin allows you to create a build container for the project - an OCI image that contains the build toolchain and project dependencies. The plugin needs the Rockcraft snap installed:
 
 ```
 snap install rockcraft --classic
