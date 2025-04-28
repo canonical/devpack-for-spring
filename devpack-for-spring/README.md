@@ -84,7 +84,7 @@ It provides a minimal set of dependencies to build the project:
 $ docker run -v `pwd`:`pwd` --user $(id -u):$(id -g) --env PEBBLE=/tmp <your-build-rock>:latest exec build `pwd` --no-daemon
 ```
 
-Visual Studio code provides an extension to develop inside [devcontainers](https://containers.dev/) - images that contain all the tools necessary to develop the application. The extension adds a Visual Studio code server to the image and runs it.
+Visual Studio Code provides an extension to develop inside [devcontainers](https://containers.dev/) - images that contain all the tools necessary to develop the application. The extension adds a Visual Studio Code server to the image and runs it.
 
 To run Visual Code server we will need to use Ubuntu base for your rock. The rockcraft plugin allows you to do it by adding a build-rock/rockcraft.yaml file that contains the overrides for the default build container:
 
