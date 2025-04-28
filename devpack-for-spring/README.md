@@ -103,7 +103,7 @@ parts:
     override-build: craftctl default
 ```
 
-To use buildRockcraft extension in the build.gradle we will also need to add the plugin:
+To use the buildRockcraft extension in the build.gradle we will also need to add the plugin:
 
 ```
 plugins {
