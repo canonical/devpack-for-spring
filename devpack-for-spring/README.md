@@ -21,37 +21,37 @@ $ devpack-for-spring snap list
 ```
 
 
+Install available libraries:
+
 ```
 $ devpack-for-spring snap install
 ```
 
-This command installs available libraries.
 
-The command
+Remove the installed libraries:
 
 ```
 $ devpack-for-spring snap remove
 ```
 
-removes the installed libraries.
 
 
 `devpack-for-spring` can run pre-configured build plugins.
 
 
+List the plugins configured in `devpack-for-spring`:
+
 ```
 devpack-for-spring list-plugins
 ```
 
-lists the plugins configured in `devpack-for-spring`
 
-Run
+Run this command in the project root to format the project source code:
 
 ```
 $ devpack-for-spring plugin format
 ```
 
-in the project root to format the source code of the project.
 
 The Rockcraft plugin allows you to create a build container for the project - an OCI image that contains the build toolchain and project dependencies. The plugin needs the Rockcraft snap installed:
 
