@@ -14,6 +14,8 @@ This snap packages a command line tool to accelerate development of Spring® pro
 
 Devpack for Spring provides prebuilt binaries of Spring Project libraries as snaps. They are configured to be used with Gradle and Maven builds.
 
+List installed and available offline libraries:
+
 ```
 $ devpack-for-spring snap list
 ```
