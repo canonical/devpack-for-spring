@@ -12,7 +12,7 @@ This snap packages a command line tool to accelerate development of Spring® pro
 
 `devpack-for-spring` invokes [Spring Boot CLI](https://docs.spring.io/spring-boot/docs/current/reference/html/cli.html) that contains additional commands.
 
-`devpack-for-spring` Devpack for Spring provides prebuilt binaries of Spring Project libraries as snaps. They are configured to be used with Gradle and Maven builds.
+Devpack for Spring provides prebuilt binaries of Spring Project libraries as snaps. They are configured to be used with Gradle and Maven builds.
 
 ```
 $ devpack-for-spring snap list
