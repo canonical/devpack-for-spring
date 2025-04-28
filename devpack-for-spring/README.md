@@ -59,7 +59,7 @@ The Rockcraft plugin allows you to create a build container for the project - an
 snap install rockcraft --classic
 ```
 
-`devpack-for-spring` includes rockcraft plugin functionality to store dependencies offline:
+`devpack-for-spring` includes Rockcraft plugin functionality to store dependencies offline:
 
 ```
 $ devpack-for-spring plugin dependencies
@@ -67,7 +67,7 @@ $ devpack-for-spring plugin dependencies
 
 The output is stored in target/build-rock/dependencies/ for Maven and build/build-rock/dependencies for Gradle.
 
-The rockcraft plugin generates a chiselled build image - an OCI image that includes a headless JDK, the build system (Gradle or Maven), and project dependencies.
+The Rockcraft plugin generates a chiselled build image - an OCI image that includes a headless JDK, the build system (Gradle or Maven), and project dependencies.
 
 The image can be uploaded to the local Docker daemon with:
 
