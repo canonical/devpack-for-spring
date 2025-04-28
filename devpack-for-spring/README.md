@@ -20,7 +20,6 @@ List installed and available offline libraries:
 $ devpack-for-spring snap list
 ```
 
-This command lists installed and available offline libraries.
 
 ```
 $ devpack-for-spring snap install
