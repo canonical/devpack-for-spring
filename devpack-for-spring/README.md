@@ -146,6 +146,6 @@ The image is tagged <your-project-name>:latest,<your-project-name>:<your-project
 
 - The 'plugin' command for Gradle projects supports only Gradle 8.4 and up.
 - The 'plugin' command requires the Gradle project to be configurable.
-- The 'plugin dependencies'  command includes rockcraft plugin dependencies.
+- The 'plugin dependencies' command includes Rockcraft plugin dependencies.
 - The 'plugin dependencies' command depends on the jar task.
 - The rock export commands do not detect the Java version and assume Java 21 by default.
