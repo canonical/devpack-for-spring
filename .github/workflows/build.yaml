@@ -58,7 +58,7 @@ jobs:
 
   snapcraft-publish:
     runs-on: ubuntu-latest
-    if: ${{ (contains(fromJSON('["push"]'), github.event_name) && github.ref_name == 'main') || github.ref_type == 'tag' }}
+    if: ${{ (contains(fromJSON('["push"]'), github.event_name) && github.ref_name == 'main') || contains(fromJSON('["workflow_dispatch"]'), github.event_name)  }}
     needs: snapcraft-build
     strategy:
       matrix:
