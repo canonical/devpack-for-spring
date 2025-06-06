@@ -1,7 +1,7 @@
 format:
   gradle:
     id: io.spring.javaformat
-    version: 0.0.43
+    version: 0.0.46
     class-name: io.spring.javaformat.gradle.SpringJavaFormatPlugin
     default-task: format
     description: Format the source code
@@ -11,7 +11,7 @@ format:
     classpath: "io.spring.javaformat:io.spring.javaformat.gradle.plugin:0.0.43"
   maven:
     id: io.spring.javaformat:spring-javaformat-maven-plugin
-    version: 0.0.43
+    version: 0.0.46
     default-task: :apply
     description: Format the source code
     tasks:
@@ -19,8 +19,8 @@ format:
 dependencies:
   gradle:
     id: io.github.rockcrafters.rockcraft
-    version: 1.1.1
-    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.1"
+    version: 1.1.2
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.2"
     class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
     repository: gradlePluginPortal()
     default-task: dependencies-export
@@ -32,7 +32,7 @@ dependencies:
     default-configuration:
   maven:
     id: io.github.rockcrafters:rockcraft-maven-plugin
-    version: 1.1.1
+    version: 1.1.2
     default-task: :create-build-rock
     description: |
       Save project dependencies
@@ -41,8 +41,8 @@ dependencies:
 rockcraft:
   gradle:
     id: io.github.rockcrafters.rockcraft
-    version: 1.1.1
-    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.1"
+    version: 1.1.2
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.1.2"
     class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
     repository: gradlePluginPortal()
     default-task: build-rock
@@ -62,7 +62,7 @@ rockcraft:
           }
   maven:
     id: io.github.rockcrafters:rockcraft-maven-plugin
-    version: 1.1.1
+    version: 1.1.2
     default-task: install :create-rock :build-rock
     description: |
       Plugin for rock image generation
