@@ -7,7 +7,7 @@ content-snaps:
     mount: /maven-repo
     oss-eol: 2026-06-30
     name: content-for-spring-boot-35
-    build-jdk: openjdk-17-jdk-headless
+    build-jdk: [ "openjdk-17-jdk-headless" ]
     summary: Rebuild of Spring® Boot Framework sources v3.5.x
     description: |
       Rebuild of Spring® Boot Framework sources v3.5.x
@@ -22,7 +22,7 @@ content-snaps:
     mount: /maven-repo
     oss-eol: 2025-12-31
     name: content-for-spring-boot-34
-    build-jdk: openjdk-17-jdk-headless
+    build-jdk: [ "openjdk-17-jdk-headless" ]
     summary: Rebuild of Spring® Boot Framework sources v3.4.x
     description: |
       Rebuild of Spring® Boot Framework sources v3.4.x
@@ -37,7 +37,7 @@ content-snaps:
     mount: /maven-repo
     oss-eol: 2025-06-30
     name: content-for-spring-boot-runtime-33
-    build-jdk: openjdk-17-jdk-headless
+    build-jdk: [ "openjdk-17-jdk-headless" ]
     summary: Rebuild of Spring® Boot Framework sources v3.3.x
     description: |
       Rebuild of Spring® Boot Framework sources v3.3.x
@@ -53,7 +53,7 @@ content-snaps:
     mount: /maven-repo
     oss-eol: n/a
     name: content-for-spring-framework-70
-    build-jdk: openjdk-24-jdk
+    build-jdk: [ "openjdk-21-jdk", "openjdk-24-jdk" ]
     summary: Rebuild of Spring® Framework sources v7.0.x
     description: |
       Rebuild of Spring® Framework sources v7.0.x.
@@ -68,7 +68,7 @@ content-snaps:
     mount: /maven-repo
     oss-eol: 2026-06-30
     name: content-for-spring-framework-62
-    build-jdk: openjdk-17-jdk
+    build-jdk: [ "openjdk-17-jdk", "openjdk-21-jdk" ]
     summary: Rebuild of Spring® Framework sources v6.2.x
     description: |
       Rebuild of Spring® Framework sources v6.2.x.
@@ -83,7 +83,7 @@ content-snaps:
     mount: /maven-repo
     oss-eol: 2026-06-30
     name: content-for-spring-framework-61
-    build-jdk: openjdk-17-jdk
+    build-jdk: [ "openjdk-17-jdk", "openjdk-21-jdk" ]
     summary: Rebuild of Spring® Framework sources v6.1.x
     description: |
       Rebuild of Spring® Framework sources v6.1.x.

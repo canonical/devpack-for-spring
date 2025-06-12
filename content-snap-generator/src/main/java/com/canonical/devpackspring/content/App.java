@@ -26,8 +26,10 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -77,10 +79,11 @@ public final class App {
                     continue;
                 }
                 var snap = (Map<String, String>) snaps.get(name);
+                var snapJDK = ((Map<String, List<String>>) snaps.get(name)).getOrDefault("build-jdk", Arrays.asList("openjdk-17-jdk-headless"));
                 TomlTable versionEntry = libraries.getTableOrEmpty(snap.get("version"));
                 snapList.add(new ContentSnap(snap.get("name"), versionEntry.getString("version"), snap.get("summary"),
                         snap.get("description"), snap.get("upstream"), snap.get("license"),
-                        snap.getOrDefault("build-jdk", "openjdk-17-jdk-headless"),
+                        snapJDK,
                         snap.getOrDefault("extra-command", "")));
             }
         }
@@ -180,7 +183,7 @@ public final class App {
     }
 
     record ContentSnap(String name, String version, String summary, String description, String upstream, String license,
-                       String build_jdk, String extra_command) {
+                       List<String> build_jdk, String extra_command) {
 
         public Map<String, String> getReplacements() {
 
@@ -191,12 +194,25 @@ public final class App {
             map.put("description", multiLineDescription(this.description));
             map.put("upstream", this.upstream);
             map.put("license", this.license);
-            map.put("build-jdk", this.build_jdk);
+            map.put("build-jdk", formatList(this.build_jdk));
             map.put("extra-command", this.extra_command);
             return map;
         }
 
-        public String multiLineDescription(String str) {
+        private String formatList(final List<String> arr) {
+            StringBuilder sb = new StringBuilder();
+            for (var s : arr) {
+                if (sb.length() > 0) {
+                    sb.append(", ");
+                }
+                sb.append("\"");
+                sb.append(s);
+                sb.append("\"");
+            }
+            return "[" + sb.toString() + "]";
+        }
+
+        private String multiLineDescription(String str) {
             StringBuilder output = new StringBuilder();
             StringTokenizer tk = new StringTokenizer(str, "\n");
             while (tk.hasMoreTokens()) {
