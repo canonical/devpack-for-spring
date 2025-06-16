@@ -53,7 +53,7 @@ content-snaps:
     mount: /maven-repo
     oss-eol: n/a
     name: content-for-spring-framework-70
-    build-jdk: ["openjdk-21-jdk", "openjdk-24-jdk"]
+    build-jdk: ["openjdk-21-jdk"]
     summary: Rebuild of Spring® Framework sources v7.0.x
     description: |
       Rebuild of Spring® Framework sources v7.0.x.
