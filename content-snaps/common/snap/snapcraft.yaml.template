@@ -33,5 +33,5 @@ parts:
       echo 'org.gradle.daemon=false' >> $HOME/.gradle/gradle.properties
       echo 'org.gradle.daemon=4' >> $HOME/.gradle/gradle.properties
       # do not hardcode toolchain vendor
-      find . -name JavaConventions.java -exec sed -i 's/toolchain.getVendor().set(JvmVendorSpec.BELLSOFT);//g' {} \;
+      find . -name JavaConventions.java -exec sed -i 's/toolchain.getVendor().set(JvmVendorSpec.BELLSOFT);/System.out.println(JvmVendorSpec.BELLSOFT);/g' {} \;
       ./gradlew -PdeploymentRepository=$CRAFT_PART_INSTALL/maven-repo build publishAllPublicationsToDeploymentRepository ${extra-command}
