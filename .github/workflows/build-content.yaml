@@ -51,11 +51,6 @@ jobs:
               distribution: 'temurin'
               java-version: '21'
               cache: 'maven'
-        - uses: actions/setup-java@v4
-          with:
-              distribution: 'temurin'
-              java-version: '24'
-              cache: 'maven'
         - run: |
             sudo apt-get update && sudo apt-get install -y make maven openjdk-21-jdk-headless
             make prepare
