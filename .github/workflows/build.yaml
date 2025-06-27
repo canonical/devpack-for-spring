@@ -16,9 +16,8 @@ jobs:
   snapcraft-build:
     strategy:
       matrix:
-        os:
-          - [self-hosted, large, jammy, X64]
-    runs-on: ${{ matrix.os }}
+        arch: [arm64, amd64]
+    runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
     steps:
       - uses: actions/checkout@v4
         id: checkout
@@ -39,7 +38,7 @@ jobs:
         id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: devpack-for-spring
+          name: devpack-for-spring-${{ matrix.arch }}
           path: ${{ steps.devpack-for-spring.outputs.snap }}
 
       - name: Build manifest
@@ -52,7 +51,7 @@ jobs:
         id: upload-artifact-manifest
         uses: actions/upload-artifact@v4
         with:
-          name: devpack-for-spring-manifest
+          name: devpack-for-spring-manifest-${{ matrix.arch }}
           path: ${{ steps.devpack-for-spring-manifest.outputs.snap }}
 
 
@@ -65,11 +64,14 @@ jobs:
         artifact-name:
           - devpack-for-spring
           - devpack-for-spring-manifest
+        arch:
+          - arm64
+          - amd64
     steps:
       - uses: actions/download-artifact@v4
         id: download-artifact
         with:
-          name: ${{ matrix.artifact-name }}
+          name: ${{ matrix.artifact-name }}-${{ matrix.arch }}
 
       - name: Gather filename
         id: gather-filename-devpack
