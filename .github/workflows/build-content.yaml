@@ -42,12 +42,9 @@ jobs:
       needs: prepare
       strategy:
         matrix:
-          arch: [arm64, amd64]
-      runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
-      strategy:
-        matrix:
           snap: ${{fromJson(needs.prepare.outputs.snaps)}}
           arch: [arm64, amd64]
+      runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-java@v4
