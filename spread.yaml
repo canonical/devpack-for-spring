@@ -15,9 +15,12 @@ suites:
 
 prepare: |
   set -ex
-  # install local devpack
-  find devpack-for-spring -name *.snap -exec snap install --dangerous --classic {} \;
-  # check that it pulled manifest from the snap store
-  snap info devpack-for-spring-manifest | grep "installed:"
   # install local manifest
   find devpack-for-spring-manifest -name *.snap -exec snap install --dangerous --classic {} \;
+
+  # install local devpack
+  find devpack-for-spring -name *.snap -exec snap install --dangerous --classic {} \;
+
+  # Removing this for now, as arm64 is not in the store
+  # # check that it pulled manifest from the snap store
+  # snap info devpack-for-spring-manifest | grep "installed:"
