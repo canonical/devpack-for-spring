@@ -4,6 +4,5 @@ set -e
 if [ ! -f /snap/devpack-for-spring-manifest/current/supported.yaml ]; then
     snap install devpack-for-spring-manifest --edge
 else
-    # Only refresh if the snap is in the store
-    (snap info devpack-for-spring-manifest && snap refresh devpack-for-spring-manifest --edge) || true
+    snap refresh devpack-for-spring-manifest --edge
 fi
