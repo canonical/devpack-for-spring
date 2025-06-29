@@ -14,7 +14,7 @@ on:
 
 jobs:
     prepare:
-      runs-on: [self-hosted, large, jammy, X64]
+      runs-on: [self-hosted, large, noble, X64]
       outputs:
         snaps: ${{ steps.gen_snaps.outputs.snaps }}
       steps:
