@@ -14,7 +14,7 @@ on:
 
 jobs:
     prepare:
-      runs-on: [self-hosted, large, jammy, X64]
+      runs-on: [self-hosted, large, noble, X64]
       outputs:
         snaps: ${{ steps.gen_snaps.outputs.snaps }}
       steps:
@@ -40,10 +40,11 @@ jobs:
 
     build_content:
       needs: prepare
-      runs-on: [self-hosted, large, jammy, X64]
       strategy:
         matrix:
           snap: ${{fromJson(needs.prepare.outputs.snaps)}}
+          arch: [arm64, amd64]
+      runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
       steps:
         - uses: actions/checkout@v4
         - uses: actions/setup-java@v4
@@ -63,7 +64,7 @@ jobs:
           id: upload-artifact
           uses: actions/upload-artifact@v4
           with:
-            name: ${{matrix.snap}}
+            name: ${{matrix.snap}}-${{matrix.arch}}
             path: ${{ steps.build.outputs.snap }}
         - name: publish to snap store ${{matrix.snap}}
           if:
