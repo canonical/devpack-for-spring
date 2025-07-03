@@ -33,7 +33,7 @@ parts:
     source-type: git
     source-tag: v${version}
     build-packages:
-      - ${build-jdk}
+      ${build-jdk}
     override-build: |
       echo 127.0.0.1 $(hostname) >> /etc/hosts
       mkdir -p $HOME/.gradle

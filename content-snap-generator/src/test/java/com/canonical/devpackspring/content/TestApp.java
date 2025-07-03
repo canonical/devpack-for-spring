@@ -53,7 +53,7 @@ public final class TestApp {
 
                       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
                     license: Apache-2.0
-                    build-jdk: openjdk-17-jdk-headless
+                    build-jdk: [ openjdk-17-jdk-headless ]
                     lts: false
 
                   content-for-spring-boot-34:
@@ -69,7 +69,7 @@ public final class TestApp {
 
                       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
                     license: Apache-2.0
-                    build-jdk: openjdk-17-jdk-headless
+                    build-jdk: [ openjdk-17-jdk-headless ]
                     lts: false
                 """;
         Path testManifest = testDir.resolve("manifest.yaml");
