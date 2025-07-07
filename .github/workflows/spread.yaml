@@ -8,7 +8,10 @@ on:
 
 jobs:
   snap-build:
-    runs-on: [self-hosted, large, jammy, X64]
+    strategy:
+      matrix:
+        arch: [arm64, amd64]
+    runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,7 +26,7 @@ jobs:
         id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: devpack-for-spring
+          name: devpack-for-spring-${{matrix.arch}}
           path: ${{ steps.devpack-for-spring.outputs.snap }}
       - name: Build manifest
         id: devpack-for-spring-manifest
@@ -34,11 +37,14 @@ jobs:
         id: upload-artifact-manifest
         uses: actions/upload-artifact@v4
         with:
-          name: devpack-for-spring-manifest
+          name: devpack-for-spring-manifest-${{matrix.arch}}
           path: ${{ steps.devpack-for-spring-manifest.outputs.snap }}
 
   snap-tests:
-    runs-on: [self-hosted, large, jammy, X64]
+    strategy:
+      matrix:
+        arch: [arm64, amd64]
+    runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
     needs: [snap-build]
 
     steps:
@@ -55,12 +61,12 @@ jobs:
       - name: Download snap artifact
         uses: actions/download-artifact@v4
         with:
-          name: devpack-for-spring-manifest
+          name: devpack-for-spring-manifest-${{ matrix.arch }}
           path: devpack-for-spring-manifest
       - name: Download snap artifact
         uses: actions/download-artifact@v4
         with:
-          name: devpack-for-spring
+          name: devpack-for-spring-${{ matrix.arch }}
           path: devpack-for-spring
 
       - uses: actions/checkout@v4
