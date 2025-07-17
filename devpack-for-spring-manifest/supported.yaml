@@ -53,14 +53,16 @@ content-snaps:
     mount: /maven-repo
     oss-eol: n/a
     name: content-for-spring-framework-70
-    build-jdk: ["openjdk-21-jdk"]
+    build-jdk: []
+    build-snap: ["openjdk"]
     summary: Rebuild of Spring® Framework sources v7.0.x
     description: |
       Rebuild of Spring® Framework sources v7.0.x.
       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
     license: Apache-2.0
     lts: true
-    extra-command: -x :framework-api:javadoc
+    extra-command: -x :framework-docs:compileJava -x :framework-api:javadoc -x :spring-webmvc:test # yamllint disable-line rule:line-length
+    setup-command: export JAVA_HOME=/snap/openjdk/current/jdk
 
   content-for-spring-framework-62:
     upstream: https://github.com/spring-projects/spring-framework
