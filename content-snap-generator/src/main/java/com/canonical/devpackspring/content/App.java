@@ -80,10 +80,13 @@ public final class App {
                 }
                 var snap = (Map<String, String>) snaps.get(name);
                 var snapJDK = ((Map<String, List<String>>) snaps.get(name)).getOrDefault("build-jdk", Arrays.asList("openjdk-17-jdk-headless"));
+                var buildSnaps = ((Map<String, List<String>>) snaps.get(name)).getOrDefault("build-snap", List.of());
                 TomlTable versionEntry = libraries.getTableOrEmpty(snap.get("version"));
                 snapList.add(new ContentSnap(snap.get("name"), versionEntry.getString("version"), snap.get("summary"),
                         snap.get("description"), snap.get("upstream"), snap.get("license"),
+                        snap.getOrDefault("setup-command", ""),
                         snapJDK,
+                        buildSnaps,
                         snap.getOrDefault("extra-command", "")));
             }
         }
@@ -183,7 +186,7 @@ public final class App {
     }
 
     record ContentSnap(String name, String version, String summary, String description, String upstream, String license,
-                       List<String> build_jdk, String extra_command) {
+                       String setup_command, List<String> build_jdk, List<String> build_snap, String extra_command) {
 
         public Map<String, String> getReplacements() {
 
@@ -195,7 +198,9 @@ public final class App {
             map.put("upstream", this.upstream);
             map.put("license", this.license);
             map.put("build-jdk", formatList(this.build_jdk));
+            map.put("build-snap", formatList(this.build_snap));
             map.put("extra-command", this.extra_command);
+            map.put("setup-command", this.setup_command);
             return map;
         }
 
