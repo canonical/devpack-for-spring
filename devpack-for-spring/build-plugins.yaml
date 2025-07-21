@@ -8,7 +8,7 @@ format:
     tasks:
       - format
     repository: gradlePluginPortal()
-    classpath: "io.spring.javaformat:io.spring.javaformat.gradle.plugin:0.0.43"
+    classpath: "io.spring.javaformat:io.spring.javaformat.gradle.plugin:0.0.47"
   maven:
     id: io.spring.javaformat:spring-javaformat-maven-plugin
     version: 0.0.47
