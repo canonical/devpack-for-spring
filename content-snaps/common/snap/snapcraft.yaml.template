@@ -29,13 +29,13 @@ parts:
     source-type: git
     source-tag: v${version}
     build-packages: ${build-jdk}
+    build-snaps: ${build-snap}
     override-build: |
+      ${setup-command}
       echo 127.0.0.1 $(hostname) >> /etc/hosts
       mkdir -p $HOME/.gradle
       echo 'systemProp.user.name=spring-builds+github' >> $HOME/.gradle/gradle.properties
       echo 'systemProp.org.gradle.internal.launcher.welcomeMessageEnabled=false' >> $HOME/.gradle/gradle.properties
       echo 'org.gradle.daemon=false' >> $HOME/.gradle/gradle.properties
       echo 'org.gradle.daemon=4' >> $HOME/.gradle/gradle.properties
-      # do not hardcode toolchain vendor
-      find . -name JavaConventions.java -exec sed -i 's/toolchain.getVendor().set(JvmVendorSpec.BELLSOFT);/System.out.println(JvmVendorSpec.BELLSOFT);/g' {} \;
       ./gradlew -PdeploymentRepository=$CRAFT_PART_INSTALL/maven-repo build publishAllPublicationsToDeploymentRepository ${extra-command}
