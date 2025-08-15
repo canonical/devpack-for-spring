@@ -59,12 +59,12 @@ jobs:
           submodules: true
 
       - name: Download snap artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: devpack-for-spring-manifest-${{ matrix.arch }}
           path: devpack-for-spring-manifest
       - name: Download snap artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: devpack-for-spring-${{ matrix.arch }}
           path: devpack-for-spring
