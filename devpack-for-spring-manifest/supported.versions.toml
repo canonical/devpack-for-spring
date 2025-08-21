@@ -1,6 +1,6 @@
 [libraries]
-spring-boot-35 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.5.4" }
-spring-boot-34 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.4.8" }
+spring-boot-35 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.5.5" }
+spring-boot-34 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.4.9" }
 spring-boot-33 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.3.13" }
 spring-core-61 = { group = "org.springframework", name = "spring-core", version = "6.1.21" }
 spring-core-62 = { group = "org.springframework", name = "spring-core", version = "6.2.10" }
