@@ -19,7 +19,7 @@ jobs:
         snaps: ${{ steps.gen_snaps.outputs.snaps }}
       steps:
         - uses: actions/checkout@v4
-        - uses: actions/setup-java@v4
+        - uses: actions/setup-java@v5
           with:
               distribution: 'temurin'
               java-version: '21'
@@ -47,7 +47,7 @@ jobs:
       runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
       steps:
         - uses: actions/checkout@v4
-        - uses: actions/setup-java@v4
+        - uses: actions/setup-java@v5
           with:
               distribution: 'temurin'
               java-version: '21'
