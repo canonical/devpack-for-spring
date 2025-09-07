@@ -1,7 +1,7 @@
 name: devpack-for-spring
 base: bare
 build-base: core24
-version: '1.0.4'
+version: '1.1.0'
 license: Apache-2.0
 summary: Development tools for Spring® projects
 description: |
@@ -25,42 +25,29 @@ platforms:
 parts:
   build-cli:
     plugin: nil
-    source: https://github.com/canonical/spring-cli
-    source-tag: v0.10.0-c2.4
+    source: https://github.com/canonical/devpack-for-spring-cli
     source-type: git
-    build-packages:
-      - openjdk-17-jdk-headless
-    override-build: |
-      ./gradlew --no-daemon -Dorg.gradle.project.buildDir=$CRAFT_STAGE/ build -x test
-
-# gradlew exits shell, use a separate part to install the build
-# result
-  install-cli:
-    after:
-      - build-cli
-    plugin: nil
-    source: .
-    override-build: |
-        rm -f $CRAFT_STAGE/libs/*-plain.jar
-        mkdir -p $CRAFT_PART_INSTALL/cli
-        cp $CRAFT_STAGE/libs/*.jar $CRAFT_PART_INSTALL/cli/
-        cp $CRAFT_PROJECT_DIR/cli.sh $CRAFT_PART_INSTALL/cli/
-        craftctl default
-
-  java-runtime:
-    plugin: nil
-    build-attributes:
-      - enable-patchelf
+    source-tag: 0.11.0
     stage-packages:
-      - openjdk-21-jdk-headless
       - libc6
       - libgcc-s1
       - libstdc++6
       - zlib1g
       - libnss3
+    build-attributes:
+      - enable-patchelf
+    build-environment:
+      - JAVA_HOME: /snap/graalvm-jdk/current/graalvm-ce/
+    build-snaps:
+      - graalvm-jdk/v21/stable
+      - gradle/latest/edge
     override-build: |
+      gradle --no-daemon build \
+        nativeCompile -PcliNative=true \
+        -x test
+      mkdir -p $CRAFT_PART_INSTALL/cli/
+      cp build/native/nativeCompile/* $CRAFT_PART_INSTALL/cli/
       craftctl default
-      (cd $CRAFT_PART_INSTALL && mkdir -p usr/bin && ln -sf --relative usr/lib/jvm/java-21-openjdk-${CRAFT_ARCH_BUILD_FOR}/bin/java usr/bin/java)
 
   plugin-config:
     plugin: dump
@@ -70,4 +57,4 @@ parts:
 
 apps:
   devpack-for-spring:
-    command: cli/cli.sh
+    command: cli/devpack-for-spring-cli
