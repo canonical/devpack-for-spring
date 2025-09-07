@@ -19,7 +19,7 @@ jobs:
         arch: [arm64, amd64]
     runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         id: checkout
 
       - name: Run content snap generator
