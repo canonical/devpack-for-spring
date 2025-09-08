@@ -27,7 +27,7 @@ parts:
     plugin: nil
     source: https://github.com/canonical/devpack-for-spring-cli
     source-type: git
-    source-tag: 0.11.0
+    source-tag: 0.11.1
     stage-packages:
       - libc6
       - libgcc-s1
