@@ -22,4 +22,5 @@ prepare: |
   # install local manifest
   find devpack-for-spring-manifest -name *.snap -exec snap install --dangerous --classic {} \;
   # install openjdk
-  apt install openjdk-21-jdk
+  apt update
+  apt install -y openjdk-21-jdk
