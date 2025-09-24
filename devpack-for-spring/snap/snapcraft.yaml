@@ -27,13 +27,14 @@ parts:
     plugin: nil
     source: https://github.com/canonical/devpack-for-spring-cli
     source-type: git
-    source-tag: 0.11.1
+    source-tag: 0.12.0
     stage-packages:
-      - libc6
-      - libgcc-s1
-      - libstdc++6
-      - zlib1g
-      - libnss3
+      - libc6_libs
+      - libgcc-s1_libs
+      - libstdc++6_libs
+      - zlib1g_libs
+      - libnss3_libs
+      - bash_bins
     build-attributes:
       - enable-patchelf
     build-environment:
@@ -57,4 +58,4 @@ parts:
 
 apps:
   devpack-for-spring:
-    command: cli/devpack-for-spring-cli
+    command: cli/cli.sh

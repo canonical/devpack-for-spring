@@ -1,0 +1,53 @@
+java:
+  description: OpenJDK
+  multiselect: true
+  apt:
+    - openjdk-8-jdk:
+        description: OpenJDK 8
+    - openjdk-11-jdk:
+        description: OpenJDK 11
+    - openjdk-17-jdk:
+        description: OpenJDK 17
+    - openjdk-21-jdk:
+        description: OpenJDK 21
+docker:
+  description: Container environment
+  apt:
+    - docker.io:
+        description: docker.io - Docker container runtime
+    - podman:
+        description: podman - A daemon-less alternative to docker
+  snap:
+    - docker:
+        description: docker - Docker container runtime snap
+        extra-commands:
+          - sudo snap connect docker:privileged :docker-support
+          - sudo snap connect docker:support :docker-support
+          - sudo snap connect docker:firewall-control :firewall-control
+          - sudo snap connect docker:network-control :network-control
+          - sudo snap connect docker:docker-cli docker:docker-daemon
+          - sudo snap connect docker:home
+          - sudo snap disable docker
+          - sudo snap enable docker
+ide:
+  description: Integrated Development Environment
+  multiselect: true
+  snap:
+    - intellij-idea-community:
+        description: Intellij Idea Community snap
+    - eclipse:
+        description: Eclipse snap
+    - code:
+        description: Visual Studio Code snap
+        extra-commands:
+          - code --install-extension redhat.java
+misc:
+  description: Additional tools
+  snap:
+    - snapcraft:
+        description: snapcraft - easily create snaps
+    - rockcraft:
+        description: rockcraft - a craft like experience to create rocks
+  apt:
+    - git:
+        description: git - fast, scalable, distributed revision control system
