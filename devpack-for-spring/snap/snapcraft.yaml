@@ -1,7 +1,7 @@
 name: devpack-for-spring
 base: bare
 build-base: core24
-version: '1.1.0'
+version: '1.2.0'
 license: Apache-2.0
 summary: Development tools for Spring® projects
 title: Development tools for Spring® projects
