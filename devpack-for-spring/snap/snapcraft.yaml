@@ -4,6 +4,15 @@ build-base: core24
 version: '1.1.0'
 license: Apache-2.0
 summary: Development tools for Spring® projects
+title: Development tools for Spring® projects
+issues:
+  - https://github.com/canonical/devpack-for-spring/issues
+contact:
+- https://github.com/canonical/devpack-for-spring/issues
+source-code:
+  - https://github.com/canonical/devpack-for-spring/
+website:
+  - https://github.com/canonical/devpack-for-spring/
 description: |
   Development tools for Spring® projects.
 
