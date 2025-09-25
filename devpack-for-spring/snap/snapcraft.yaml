@@ -59,6 +59,14 @@ parts:
       cp build/native/nativeCompile/* $CRAFT_PART_INSTALL/cli/
       craftctl default
 
+  install-cli:
+    plugin: nil
+    source: .
+    override-build: |
+      mkdir -p $CRAFT_PART_INSTALL/cli/
+      cp cli.sh $CRAFT_PART_INSTALL/cli/
+      craftctl default
+
   plugin-config:
     plugin: dump
     source: .
