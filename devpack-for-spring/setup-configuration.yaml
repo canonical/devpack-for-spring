@@ -20,7 +20,7 @@ docker:
         description: docker.io - Docker container runtime
         extra-commands:
           - sudo usermod -aG docker ${user.name}
-          - echo Please logout and login or run 'newgrp docker' to apply group changes.
+          - echo Please logout and login or run 'newgrp docker' to apply the group changes.
     - podman:
         description: podman - A daemon-less alternative to docker
         extra-commands:
