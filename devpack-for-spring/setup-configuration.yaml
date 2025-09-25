@@ -10,13 +10,21 @@ java:
         description: OpenJDK 17
     - openjdk-21-jdk:
         description: OpenJDK 21
+  snap:
+    - graalvm-jdk:
+        description: GraalVM Community Edition for the Java Development Kit
 docker:
   description: Container environment
   apt:
     - docker.io:
         description: docker.io - Docker container runtime
+        extra-commands:
+          - sudo usermod -aG docker ${user.name}
+          - echo Please logout and login or run 'newgrp docker' to apply group changes.
     - podman:
         description: podman - A daemon-less alternative to docker
+        extra-commands:
+          - sudo apt-get -y install podman-docker
   snap:
     - docker:
         description: docker - Docker container runtime snap
@@ -34,19 +42,27 @@ ide:
   multiselect: true
   snap:
     - intellij-idea-community:
+        classic: true
         description: Intellij Idea Community snap
     - eclipse:
+        classic: true
         description: Eclipse snap
     - code:
+        classic: true
         description: Visual Studio Code snap
         extra-commands:
-          - code --install-extension redhat.java
+          - code --install-extension redhat.java --force
+          - code --install-extension ms-azuretools.vscode-containers  --force
+          - code --install-extension vmware.vscode-spring-boot --force
+          - code --install-extension vmware.vscode-boot-dev-pack --force
 misc:
   description: Additional tools
   snap:
     - snapcraft:
+        classic: true
         description: snapcraft - easily create snaps
     - rockcraft:
+        classic: true
         description: rockcraft - a craft like experience to create rocks
   apt:
     - git:

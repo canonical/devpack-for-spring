@@ -63,7 +63,8 @@ parts:
     plugin: dump
     source: .
     stage:
-      - build-plugins.yaml
+      - plugin-configuration.yaml
+      - setup-configuration.yaml
 
 apps:
   devpack-for-spring:
