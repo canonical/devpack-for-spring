@@ -10,10 +10,18 @@ This snap packages a command line tool to accelerate development of Spring® pro
 
 ## How it works
 
+Setup development environment:
+
+```
+$ devpack-for-spring setup
+```
+
+This brings up a menu to install a Java VM, a Container Environment and an IDE.
+
 Create a new Spring Boot Project:
 
 ```
-$ devpack-for-sprint boot start
+$ devpack-for-spring boot start
 ```
 
 Devpack for Spring provides prebuilt binaries of Spring Project libraries as snaps. They are configured to be used with Gradle and Maven builds.
