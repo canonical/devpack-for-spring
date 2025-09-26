@@ -1,9 +1,18 @@
 name: devpack-for-spring
 base: bare
 build-base: core24
-version: '1.1.0'
+version: '1.2.0'
 license: Apache-2.0
 summary: Development tools for Spring® projects
+title: Development tools for Spring® projects
+issues:
+  - https://github.com/canonical/devpack-for-spring/issues
+contact:
+- https://github.com/canonical/devpack-for-spring/issues
+source-code:
+  - https://github.com/canonical/devpack-for-spring/
+website:
+  - https://github.com/canonical/devpack-for-spring/
 description: |
   Development tools for Spring® projects.
 
@@ -27,13 +36,14 @@ parts:
     plugin: nil
     source: https://github.com/canonical/devpack-for-spring-cli
     source-type: git
-    source-tag: 0.11.1
+    source-tag: 0.12.1
     stage-packages:
-      - libc6
-      - libgcc-s1
-      - libstdc++6
-      - zlib1g
-      - libnss3
+      - libc6_libs
+      - libgcc-s1_libs
+      - libstdc++6_libs
+      - zlib1g_libs
+      - libnss3_libs
+      - bash_bins
     build-attributes:
       - enable-patchelf
     build-environment:
@@ -49,12 +59,21 @@ parts:
       cp build/native/nativeCompile/* $CRAFT_PART_INSTALL/cli/
       craftctl default
 
+  install-cli:
+    plugin: nil
+    source: .
+    override-build: |
+      mkdir -p $CRAFT_PART_INSTALL/cli/
+      cp cli.sh $CRAFT_PART_INSTALL/cli/
+      craftctl default
+
   plugin-config:
     plugin: dump
     source: .
     stage:
-      - build-plugins.yaml
+      - plugin-configuration.yaml
+      - setup-configuration.yaml
 
 apps:
   devpack-for-spring:
-    command: cli/devpack-for-spring-cli
+    command: cli/cli.sh
