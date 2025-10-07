@@ -22,6 +22,7 @@ You can override the default configuration by creating a custom file at `$HOME/.
 
 The command launches an interactive menu. Selecting an item will install it, and deselecting it will uninstall it.
 
+
 Create a new Spring Boot Project:
 
 ```
