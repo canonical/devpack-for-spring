@@ -17,9 +17,7 @@ $ devpack-for-spring setup
 ```
 
 This command installs a selection of `apt` and `snap` packages listed in the [`setup-configuration.yaml`](setup-configuration.yaml) file.
-
 You can override the default configuration by creating a custom file at `$HOME/.config/devpack-for-spring/setup-configuration.yaml` or by setting the `SPRING_CLI_SETUP_COMMANDS_CONFIGURATION` environment variable to your file's path.
-
 The command launches an interactive menu. Selecting an item will install it, and deselecting it will uninstall it.
 <br>
 <br>
