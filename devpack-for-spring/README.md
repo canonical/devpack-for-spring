@@ -16,7 +16,11 @@ Setup development environment:
 $ devpack-for-spring setup
 ```
 
-This brings up a menu to install a Java VM, a Container Environment and an IDE.
+This command installs a selection of `apt` and `snap` packages listed in the [`setup-configuration.yaml`](setup-configuration.yaml) file.
+
+You can override the default configuration by creating a custom file at `$HOME/.config/devpack-for-spring/setup-configuration.yaml` or by setting the `SPRING_CLI_SETUP_COMMANDS_CONFIGURATION` environment variable to your file's path.
+
+The command launches an interactive menu. Selecting an item will install it, and deselecting it will uninstall it.
 
 Create a new Spring Boot Project:
 
