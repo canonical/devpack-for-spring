@@ -51,8 +51,7 @@ Remove the installed libraries:
 $ devpack-for-spring snap remove
 ```
 
-<br>
-<br>
+### Run build plugins
 
 `devpack-for-spring` can run pre-configured build plugins.
 
@@ -70,8 +69,7 @@ Run this command in the project root to format the project source code:
 $ devpack-for-spring plugin format
 ```
 
-<br>
-<br>
+#### Rockcraft plugin
 
 The Rockcraft plugin allows you to create a build container for the project - an OCI image that contains the build toolchain and project dependencies. The plugin needs the Rockcraft snap installed:
 
@@ -160,7 +158,7 @@ To push the image to the local docker daemon, execute:
 $ devpack-for-spring plugin rockcraft push-rock
 ```
 
-The image is tagged <your-project-name>:latest,<your-project-name>:<your-project-version>.
+The image is tagged `<your-project-name>:latest`,`<your-project-name>:<your-project-version>`.
 
 ## Limitations/Known issues
 
