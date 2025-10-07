@@ -17,11 +17,10 @@ $ devpack-for-spring setup
 ```
 
 This command installs a selection of `apt` and `snap` packages listed in the [`setup-configuration.yaml`](setup-configuration.yaml) file.
-
 You can override the default configuration by creating a custom file at `$HOME/.config/devpack-for-spring/setup-configuration.yaml` or by setting the `SPRING_CLI_SETUP_COMMANDS_CONFIGURATION` environment variable to your file's path.
-
 The command launches an interactive menu. Selecting an item will install it, and deselecting it will uninstall it.
-
+<br>
+<br>
 Create a new Spring Boot Project:
 
 ```
@@ -50,7 +49,7 @@ Remove the installed libraries:
 $ devpack-for-spring snap remove
 ```
 
-
+### Run build plugins
 
 `devpack-for-spring` can run pre-configured build plugins.
 
@@ -68,6 +67,7 @@ Run this command in the project root to format the project source code:
 $ devpack-for-spring plugin format
 ```
 
+#### Rockcraft plugin
 
 The Rockcraft plugin allows you to create a build container for the project - an OCI image that contains the build toolchain and project dependencies. The plugin needs the Rockcraft snap installed:
 
@@ -91,7 +91,7 @@ The image can be uploaded to the local Docker daemon with:
 $ devpack-for-spring plugin rockcraft push-build-rock
 ```
 
-The image name is build-<your-project-name>:
+The image name is `build-<your-project-name>`:
 
 The build image is a chiselled Ubuntu by default with slices for openjdk, busybox, and git.
 It provides a minimal set of dependencies to build the project:
@@ -156,7 +156,7 @@ To push the image to the local docker daemon, execute:
 $ devpack-for-spring plugin rockcraft push-rock
 ```
 
-The image is tagged <your-project-name>:latest,<your-project-name>:<your-project-version>.
+The image is tagged `<your-project-name>:latest`,`<your-project-name>:<your-project-version>`.
 
 ## Limitations/Known issues
 
