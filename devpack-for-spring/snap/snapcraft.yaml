@@ -50,7 +50,7 @@ parts:
       - JAVA_HOME: /snap/graalvm-jdk/current/graalvm-ce/
     build-snaps:
       - graalvm-jdk/v21/stable
-      - gradle/latest/edge
+      - gradle/latest/stable
     override-build: |
       gradle --no-daemon build \
         nativeCompile -PcliNative=true \
