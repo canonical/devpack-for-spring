@@ -1,5 +1,20 @@
 version: 2
 content-snaps:
+  content-for-spring-boot-40:
+    upstream: https://github.com/spring-projects/spring-boot
+    version: spring-boot-40
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: n/a
+    name: content-for-spring-boot-40
+    summary: Rebuild of Spring® Boot Framework sources v4.0.x
+    description: |
+      Rebuild of Spring® Boot Framework sources v4.0.x
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: false
+    setup-command: apt-get update -yq && apt-get install -yq openjdk-25-jdk-headless
+
   content-for-spring-boot-35:
     upstream: https://github.com/spring-projects/spring-boot
     version: spring-boot-35
@@ -51,10 +66,8 @@ content-snaps:
     version: spring-core-70
     channel: latest/edge
     mount: /maven-repo
-    oss-eol: n/a
+    oss-eol: 2027-07-30
     name: content-for-spring-framework-70
-    build-jdk: []
-    build-snap: ["openjdk"]
     summary: Rebuild of Spring® Framework sources v7.0.x
     description: |
       Rebuild of Spring® Framework sources v7.0.x.
@@ -62,7 +75,7 @@ content-snaps:
     license: Apache-2.0
     lts: true
     extra-command: -x :framework-docs:compileJava -x :framework-api:javadoc -x :spring-webmvc:test # yamllint disable-line rule:line-length
-    setup-command: export JAVA_HOME=/snap/openjdk/current/jdk
+    setup-command: apt update -y && apt-get install -y openjdk-25-jdk-headless
 
   content-for-spring-framework-62:
     upstream: https://github.com/spring-projects/spring-framework
