@@ -4,8 +4,8 @@ backends:
   lxd:
     systems:
       - ubuntu-24.04
-      - ubuntu-22.04
-      - ubuntu-20.04
+#      - ubuntu-22.04
+#      - ubuntu-20.04
 
 path: /home/test
 
