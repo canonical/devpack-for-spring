@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload Snap to workflow artifacts
         id: upload-artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: devpack-for-spring-${{ matrix.arch }}
           path: ${{ steps.devpack-for-spring.outputs.snap }}
@@ -49,7 +49,7 @@ jobs:
 
       - name: Upload Snap to workflow artifacts
         id: upload-artifact-manifest
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: devpack-for-spring-manifest-${{ matrix.arch }}
           path: ${{ steps.devpack-for-spring-manifest.outputs.snap }}
@@ -68,7 +68,7 @@ jobs:
           - arm64
           - amd64
     steps:
-      - uses: actions/download-artifact@v5
+      - uses: actions/download-artifact@v6
         id: download-artifact
         with:
           name: ${{ matrix.artifact-name }}-${{ matrix.arch }}
