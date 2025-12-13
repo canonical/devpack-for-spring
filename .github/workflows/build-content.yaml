@@ -62,7 +62,7 @@ jobs:
             path: target/${{matrix.snap}}
         - name: Upload Snap to workflow artifacts
           id: upload-artifact
-          uses: actions/upload-artifact@v5
+          uses: actions/upload-artifact@v6
           with:
             name: ${{matrix.snap}}-${{matrix.arch}}
             path: ${{ steps.build.outputs.snap }}
