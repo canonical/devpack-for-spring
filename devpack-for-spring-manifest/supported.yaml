@@ -90,6 +90,7 @@ content-snaps:
       Rebuild of Spring® Framework sources v6.2.x.
       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
     license: Apache-2.0
+    extra-command: -x :framework-api:javadoc  # yamllint disable-line rule:line-length
     lts: true
 
   content-for-spring-framework-61:
