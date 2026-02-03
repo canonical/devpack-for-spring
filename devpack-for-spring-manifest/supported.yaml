@@ -13,7 +13,7 @@ content-snaps:
       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
     license: Apache-2.0
     lts: false
-    setup-command: apt-get update -yq && apt-get install -yq openjdk-25-jdk-headless  # yamllint disable-line rule:line-length
+    build-jdk: ["openjdk-25-jdk-headless"]
 
   content-for-spring-boot-35:
     upstream: https://github.com/spring-projects/spring-boot
@@ -74,8 +74,8 @@ content-snaps:
       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
     license: Apache-2.0
     lts: true
+    build-jdk: ["openjdk-25-jdk"]
     extra-command: -x :framework-docs:compileJava -x :framework-api:javadoc -x :spring-webmvc:test  # yamllint disable-line rule:line-length
-    setup-command: apt-get update -y && apt-get install -y openjdk-25-jdk-headless  # yamllint disable-line rule:line-length
 
   content-for-spring-framework-62:
     upstream: https://github.com/spring-projects/spring-framework
