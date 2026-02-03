@@ -24,7 +24,7 @@ jobs:
           path: devpack-for-spring
       - name: Upload Snap to workflow artifacts
         id: upload-artifact
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: devpack-for-spring-${{matrix.arch}}
           path: ${{ steps.devpack-for-spring.outputs.snap }}
@@ -35,7 +35,7 @@ jobs:
           path: devpack-for-spring-manifest
       - name: Upload Snap to workflow artifacts
         id: upload-artifact-manifest
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: devpack-for-spring-manifest-${{matrix.arch}}
           path: ${{ steps.devpack-for-spring-manifest.outputs.snap }}
@@ -59,12 +59,12 @@ jobs:
           submodules: true
 
       - name: Download snap artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: devpack-for-spring-manifest-${{ matrix.arch }}
           path: devpack-for-spring-manifest
       - name: Download snap artifact
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v7
         with:
           name: devpack-for-spring-${{ matrix.arch }}
           path: devpack-for-spring
