@@ -60,7 +60,6 @@ content-snaps:
     license: Apache-2.0
     lts: false
 
-
   content-for-spring-framework-70:
     upstream: https://github.com/spring-projects/spring-framework
     version: spring-core-70
