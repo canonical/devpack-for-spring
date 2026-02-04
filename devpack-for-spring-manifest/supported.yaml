@@ -59,6 +59,7 @@ content-snaps:
       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
     license: Apache-2.0
     lts: false
+    extra-command: -x test
 
   content-for-spring-framework-70:
     upstream: https://github.com/spring-projects/spring-framework
