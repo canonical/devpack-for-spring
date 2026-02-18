@@ -5,4 +5,4 @@ spring-boot-34 = { group = "org.springframework.boot", name = "spring-boot-depen
 spring-boot-33 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "3.3.13" }
 spring-core-61 = { group = "org.springframework", name = "spring-core", version = "6.1.21" }
 spring-core-62 = { group = "org.springframework", name = "spring-core", version = "6.2.16" }
-spring-core-70 = { group = "org.springframework", name = "spring-core", version = "7.0.4" }
+spring-core-70 = { group = "org.springframework", name = "spring-core", version = "7.0.5" }
