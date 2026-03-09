@@ -1,26 +1,31 @@
+versions:
+  javaformat: &javaformat_version 0.0.47
+  rockcraft: &rockcraft_version 1.2.4
+
 format:
   gradle:
     id: io.spring.javaformat
-    version: 0.0.47
+    version: *javaformat_version
     class-name: io.spring.javaformat.gradle.SpringJavaFormatPlugin
     default-task: format
     description: Format the source code
     tasks:
       - format
     repository: gradlePluginPortal()
-    classpath: "io.spring.javaformat:io.spring.javaformat.gradle.plugin:0.0.47"
+    classpath: "io.spring.javaformat:io.spring.javaformat.gradle.plugin:*javaformat_version"
   maven:
     id: io.spring.javaformat:spring-javaformat-maven-plugin
-    version: 0.0.47
+    version: *javaformat_version
     default-task: :apply
     description: Format the source code
     tasks:
       - :apply
+
 dependencies:
   gradle:
     id: io.github.rockcrafters.rockcraft
-    version: 1.2.4
-    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.2.4"
+    version: *rockcraft_version
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:*rockcraft_version"
     class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
     repository: gradlePluginPortal()
     default-task: dependencies-export
@@ -32,17 +37,18 @@ dependencies:
     default-configuration:
   maven:
     id: io.github.rockcrafters:rockcraft-maven-plugin
-    version: 1.2.4
+    version: *rockcraft_version
     default-task: :create-build-rock
     description: |
       Save project dependencies
     tasks:
       - :create-build-rock
+
 rockcraft:
   gradle:
     id: io.github.rockcrafters.rockcraft
-    version: 1.2.4
-    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:1.2.4"
+    version: *rockcraft_version
+    classpath: "io.github.rockcrafters.rockcraft:io.github.rockcrafters.rockcraft.gradle.plugin:*rockcraft_version"
     class-name: com.canonical.rockcraft.gradle.RockcraftPlugin
     repository: gradlePluginPortal()
     default-task: build-rock
@@ -57,12 +63,4 @@ rockcraft:
       - push-build-rock
   maven:
     id: io.github.rockcrafters:rockcraft-maven-plugin
-    version: 1.2.4
-    default-task: install :create-rock :build-rock
-    description: |
-      Plugin for rock image generation
-    tasks:
-      - install :create-rock
-      - install :create-rock :build-rock
-      - :create-build-rock
-      - install :create-rock :build-rock :push-rock
+    version: *rockcraft_version
