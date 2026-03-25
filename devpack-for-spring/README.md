@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This snap packages a command line tool to accelerate development of Spring® projects.
+`devpack-for-spring` is a command line tool for developing and packaging Spring(R) projects. It automates environment setup, build plugins configuration and offline library management.
 
 ## Installation
 

@@ -14,16 +14,14 @@ source-code:
 website:
   - https://github.com/canonical/devpack-for-spring/
 description: |
-  Development tools for Spring® projects.
+  Command line tool for developing and packaging Spring(R) projects.
+  Automates environment setup, build plugins configuration and offline
+  library management.
+  Type devpack-for-spring help after installation to start.
 
-  The snap packages a tool based on Spring CLI project with additional
-  commands.
-
-  Snap documentation:
-  https://github.com/canonical/spring-boot-snap/blob/main/devpack-for-spring/README.md
+  Snap documentation: https://github.com/canonical/devpack-for-spring/blob/main/devpack-for-spring/README.md
 
   Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
-
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: classic # use 'strict' once you have the right plugs and slots
 
