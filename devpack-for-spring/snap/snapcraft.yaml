@@ -36,25 +36,28 @@ parts:
     source-type: git
     source-tag: 0.12.2
     stage-packages:
-      - libc6_libs
-      - libgcc-s1_libs
-      - libstdc++6_libs
-      - zlib1g_libs
-      - libnss3_libs
       - bash_bins
+      - openjdk-25-jdk-headless_standard
     build-attributes:
       - enable-patchelf
-    build-environment:
-      - JAVA_HOME: /snap/graalvm-jdk/current/graalvm-ce/
     build-snaps:
-      - graalvm-jdk/v21/stable
       - gradle/latest/stable
+    build-packages:
+      - openjdk-25-jdk-headless
     override-build: |
-      gradle --no-daemon build \
-        nativeCompile -PcliNative=true \
-        -x test
-      mkdir -p $CRAFT_PART_INSTALL/cli/
-      cp build/native/nativeCompile/* $CRAFT_PART_INSTALL/cli/
+      gradle --no-daemon -Paot=true build -x test
+
+      mkdir -p "$CRAFT_PART_INSTALL/cli"
+      find build/libs/ -name "devpack-for-spring-cli-*.jar" ! -name "*-plain.jar" \
+        -exec cp {} "$CRAFT_PART_INSTALL/cli/devpack-for-spring-cli.jar" \; -quit
+
+      JAVA_HOME="usr/lib/jvm/java-25-openjdk-${CRAFT_ARCH_BUILD_FOR}"
+      cd "$CRAFT_PART_INSTALL"
+      mkdir -p usr/bin
+      for tool in `ls "$CRAFT_PART_INSTALL/$JAVA_HOME/bin"`; do
+        ln -s --relative "$JAVA_HOME/bin/$tool" usr/bin/
+      done
+
       craftctl default
 
   install-cli:
