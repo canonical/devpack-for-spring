@@ -67,6 +67,8 @@ Run this command in the project root to format the project source code:
 $ devpack-for-spring plugin format
 ```
 
+See [BuildPlugins](https://github.com/canonical/devpack-for-spring-cli/blob/main/BuildPlugins.md) for more information.
+
 #### Rockcraft plugin
 
 The Rockcraft plugin allows you to create a build container for the project - an OCI image that contains the build toolchain and project dependencies. The plugin needs the Rockcraft snap installed:
