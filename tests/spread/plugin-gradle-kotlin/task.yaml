@@ -1,0 +1,8 @@
+summary: test build plugin functionality for gradle kotlin dsl
+execute: |
+  set -ex
+  if devpack-for-spring plugin checkstyle; then
+    exit 1
+  fi
+  devpack-for-spring plugin pmd || true
+  grep 'id("pmd")' build.gradle.kts

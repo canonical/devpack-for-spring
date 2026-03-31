@@ -1,0 +1,13 @@
+checkstyle:
+  gradle:
+    id: checkstyle
+  maven:
+    id: org.apache.maven.plugins:maven-checkstyle-plugin
+    version: 3.6.0
+
+pmd:
+  gradle:
+    id: pmd
+  maven:
+    id: org.apache.maven.plugins:maven-pmd-plugin
+    version: 3.21.2
