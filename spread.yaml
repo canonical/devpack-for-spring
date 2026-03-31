@@ -16,7 +16,7 @@ suites:
 prepare: |
   set -ex
   apt update
-  apt install -y retry
+  apt install -y retry openjdk-17-jdk-headless
   # install local devpack
   for x in `find devpack-for-spring -name *.snap -print`; do
     retry --times=10 --delay 10 -- snap install --dangerous --classic $x
