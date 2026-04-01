@@ -94,7 +94,6 @@ parts:
     plugin: dump
     source: .
     stage:
-      - plugin-configuration.yaml
       - setup-configuration.yaml
 
 apps:
