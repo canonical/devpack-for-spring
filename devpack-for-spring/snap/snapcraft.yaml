@@ -14,7 +14,7 @@ source-code:
 website:
   - https://github.com/canonical/devpack-for-spring/
 description: |
-  Command line tool for developing and packaging Spring(R) projects.
+  Command line tool for developing and packaging Spring® projects.
   Automates environment setup, build plugins configuration and offline
   library management.
   Type devpack-for-spring help after installation to start.
