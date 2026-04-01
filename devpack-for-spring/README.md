@@ -2,7 +2,7 @@
 
 ## Introduction
 
-`devpack-for-spring` is a command line tool for developing and packaging Spring(R) projects. It automates environment setup, build plugins configuration and offline library management.
+`devpack-for-spring` is a command line tool for developing and packaging Spring® projects. It automates environment setup, build plugins configuration and offline library management.
 
 ## Installation
 
