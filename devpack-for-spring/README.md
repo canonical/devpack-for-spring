@@ -166,4 +166,4 @@ The image is tagged `<your-project-name>:latest`,`<your-project-name>:<your-proj
 - The 'plugin' command requires the Gradle project to be configurable.
 - The 'plugin dependencies' command includes Rockcraft plugin dependencies.
 - The 'plugin dependencies' command depends on the jar task.
-- The rock export assume Java 21 by default if the project toolchain settings are not configured.
+- The rock export assumes Java 21 by default if the project toolchain settings are not configured.
