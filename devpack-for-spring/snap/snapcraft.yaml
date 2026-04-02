@@ -72,7 +72,7 @@ parts:
 
       # ensure that classpath jar order is stable
       CLASSPATH=$(find cli/lib/ -type f -name "*.jar" -print | sort | tr '\n' ':' | sed 's/\(.*\):/\1/')
-
+      echo $CLASSPATH | sed 's|cli/lib|$SNAP/cli/lib|g' > $CRAFT_PART_INSTALL/cli/classpath.txt
       ./$JAVA_HOME/bin/java -XX:AOTCacheOutput=cli/devpack-for-spring-cli.aot \
         --sun-misc-unsafe-memory-access=allow \
         --enable-native-access=ALL-UNNAMED \
