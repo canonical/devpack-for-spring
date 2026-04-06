@@ -1,0 +1,36 @@
+name: ${name}
+base: bare
+build-base: core24
+version: '${version}'
+summary: ${summary}
+license: ${license}
+description: |
+${description}
+
+grade: stable
+confinement: strict
+
+platforms:
+  amd64:
+  arm64:
+
+slots:
+  ${name}:
+    interface: content
+    content: ${name}
+    source:
+      read:
+        - $SNAP
+
+parts:
+  content:
+    plugin: nil
+    source: ${upstream}
+    source-type: git
+    source-tag: v${version}
+    build-packages: ${build-jdk}
+    build-snaps: ${build-snap}
+    override-build: |
+      ${setup-command}
+      echo 127.0.0.1 $(hostname) >> /etc/hosts
+      ./mvnw -DskipTests -DaltDeploymentRepository=local-repo::default::file://$CRAFT_PART_INSTALL/maven-repo clean deploy

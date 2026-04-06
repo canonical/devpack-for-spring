@@ -108,3 +108,18 @@ content-snaps:
     license: Apache-2.0
     extra-command: -x test
     lts: true
+
+  content-for-spring-ai-11:
+    upstream: https://github.com/spring-projects/spring-ai
+    version: spring-ai-11
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: 2026-06-30
+    name: content-for-spring-ai-11
+    build-jdk: ["openjdk-21-jdk"]
+    summary: Rebuild of Spring® AI sources v1.1.x
+    description: |
+      Rebuild of Spring® AI sources v1.1.x.
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: true
