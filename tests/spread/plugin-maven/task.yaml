@@ -1,0 +1,5 @@
+summary: test build plugin functionality for maven
+execute: |
+  set -ex
+  devpack-for-spring plugin checkstyle | grep -q "Plugin org.apache.maven.plugins:maven-checkstyle-plugin is already configured. Using project configuration."
+  devpack-for-spring plugin pmd | grep -q "PMD version:"

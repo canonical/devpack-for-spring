@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This snap packages a command line tool to accelerate development of Spring® projects.
+`devpack-for-spring` is a command line tool for developing and packaging Spring® projects. It automates environment setup, build plugins configuration and offline library management.
 
 ## Installation
 
@@ -66,6 +66,8 @@ Run this command in the project root to format the project source code:
 ```
 $ devpack-for-spring plugin format
 ```
+
+See [BuildPlugins](https://github.com/canonical/devpack-for-spring-cli/blob/main/BuildPlugins.md) for more information.
 
 #### Rockcraft plugin
 
@@ -164,4 +166,4 @@ The image is tagged `<your-project-name>:latest`,`<your-project-name>:<your-proj
 - The 'plugin' command requires the Gradle project to be configurable.
 - The 'plugin dependencies' command includes Rockcraft plugin dependencies.
 - The 'plugin dependencies' command depends on the jar task.
-- The rock export commands do not detect the Java version and assume Java 21 by default.
+- The rock export assumes Java 21 by default if the project toolchain settings are not configured.

@@ -1,0 +1,21 @@
+checkstyle:
+  gradle:
+    id: checkstyle
+    default-task: checkstyle
+    tasks:
+      checkstyle: checkstyleMain
+      gradleGroovy: |
+        checkstyle {
+           toolVersion = '10.12.4'
+           configDirectory = file("${rootProject.projectDir}/.config/checkstyle")
+        }
+        dependencies {
+            checkstyle 'com.puppycrawl.tools:checkstyle:10.12.4'
+        }
+
+pmd:
+  gradle:
+    id: pmd
+    default-task: check
+    tasks:
+      check: check

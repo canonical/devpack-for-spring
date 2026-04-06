@@ -1,7 +1,7 @@
 name: devpack-for-spring
 base: bare
 build-base: core24
-version: '1.2.1'
+version: '1.2.2'
 license: Apache-2.0
 summary: Development tools for Spring® projects
 title: Development tools for Spring® projects
@@ -14,16 +14,14 @@ source-code:
 website:
   - https://github.com/canonical/devpack-for-spring/
 description: |
-  Development tools for Spring® projects.
+  Command line tool for developing and packaging Spring® projects.
+  Automates environment setup, build plugins configuration and offline
+  library management.
+  Type devpack-for-spring help after installation to start.
 
-  The snap packages a tool based on Spring CLI project with additional
-  commands.
-
-  Snap documentation:
-  https://github.com/canonical/spring-boot-snap/blob/main/devpack-for-spring/README.md
+  Snap documentation: https://github.com/canonical/devpack-for-spring/blob/main/devpack-for-spring/README.md
 
   Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
-
 grade: stable # must be 'stable' to release into candidate/stable channels
 confinement: classic # use 'strict' once you have the right plugs and slots
 
@@ -36,27 +34,52 @@ parts:
     plugin: nil
     source: https://github.com/canonical/devpack-for-spring-cli
     source-type: git
-    source-tag: 0.12.2
+    source-tag: 0.12.5
     stage-packages:
-      - libc6_libs
-      - libgcc-s1_libs
-      - libstdc++6_libs
-      - zlib1g_libs
-      - libnss3_libs
       - bash_bins
+      - openjdk-25-jdk-headless_standard
     build-attributes:
       - enable-patchelf
-    build-environment:
-      - JAVA_HOME: /snap/graalvm-jdk/current/graalvm-ce/
     build-snaps:
-      - graalvm-jdk/v21/stable
       - gradle/latest/stable
+    build-packages:
+      - openjdk-25-jdk-headless
     override-build: |
-      gradle --no-daemon build \
-        nativeCompile -PcliNative=true \
-        -x test
-      mkdir -p $CRAFT_PART_INSTALL/cli/
-      cp build/native/nativeCompile/* $CRAFT_PART_INSTALL/cli/
+      gradle --no-daemon -Paot=true build -x test
+
+      # Repack jar files to make them aot-cache friendly
+      mkdir -p "$CRAFT_PART_INSTALL/cli"
+      mkdir unpack
+      find build/libs/ -name "devpack-for-spring-cli-*.jar" ! -name "*-plain.jar" \
+        -exec cp {} "unpack/devpack-for-spring-cli.jar" \; -quit
+      (cd unpack &&  \
+        jar xvf devpack-for-spring-cli.jar \
+        && rm devpack-for-spring-cli.jar  \
+        && jar cf ../devpack-for-spring-cli.jar META-INF org \
+        && cd BOOT-INF/classes \
+        && jar uvf ../../../devpack-for-spring-cli.jar  . )
+      cp devpack-for-spring-cli.jar $CRAFT_PART_INSTALL/cli/
+      mkdir -p $CRAFT_PART_INSTALL/cli/lib/
+      mv unpack/BOOT-INF/lib/* $CRAFT_PART_INSTALL/cli/lib/
+      rm -rf unpack
+
+      JAVA_HOME="usr/lib/jvm/java-25-openjdk-${CRAFT_ARCH_BUILD_FOR}"
+      cd "$CRAFT_PART_INSTALL"
+      mkdir -p usr/bin
+      for tool in `ls "$CRAFT_PART_INSTALL/$JAVA_HOME/bin"`; do
+        ln -sf --relative "$JAVA_HOME/bin/$tool" usr/bin/
+      done
+
+      # ensure that classpath jar order is stable
+      CLASSPATH=$(find cli/lib/ -type f -name "*.jar" -print | sort | tr '\n' ':' | sed 's/\(.*\):/\1/')
+      echo $CLASSPATH | sed 's|cli/lib|$SNAP/cli/lib|g' > $CRAFT_PART_INSTALL/cli/classpath.txt
+      ./$JAVA_HOME/bin/java -XX:AOTCacheOutput=cli/devpack-for-spring-cli.aot \
+        --sun-misc-unsafe-memory-access=allow \
+        --enable-native-access=ALL-UNNAMED \
+        -Dspring.aot.enabled=true \
+        -Dio.netty.noUnsafe=true \
+        -cp "cli/devpack-for-spring-cli.jar:$CLASSPATH" org.springframework.cli.DevpackForSpringCliApplication list-plugins
+
       craftctl default
 
   install-cli:
@@ -71,7 +94,6 @@ parts:
     plugin: dump
     source: .
     stage:
-      - plugin-configuration.yaml
       - setup-configuration.yaml
 
 apps:

@@ -1,0 +1,15 @@
+checkstyle:
+  maven:
+    id: org.apache.maven.plugins:maven-checkstyle-plugin
+    version: 3.6.0
+    default-task: check
+    tasks:
+      check: :check
+
+pmd:
+  maven:
+    id: org.apache.maven.plugins:maven-pmd-plugin
+    version: 3.21.2
+    default-task: check
+    tasks:
+      check: :check

@@ -1,0 +1,5 @@
+summary: test build plugin functionality for gradle groovy
+execute: |
+  set -ex
+  devpack-for-spring plugin checkstyle | grep -q "Plugin checkstyle is already configured."
+  devpack-for-spring plugin pmd | grep -q pmdTest
