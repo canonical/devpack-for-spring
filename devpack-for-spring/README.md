@@ -13,12 +13,18 @@
 Setup development environment:
 
 ```
-$ devpack-for-spring setup
+$ devpack-for-spring setup [options]
 ```
 
 This command installs a selection of `apt` and `snap` packages listed in the [`setup-configuration.yaml`](setup-configuration.yaml) file.
 You can override the default configuration by creating a custom file at `$HOME/.config/devpack-for-spring/setup-configuration.yaml` or by setting the `SPRING_CLI_SETUP_COMMANDS_CONFIGURATION` environment variable to your file's path.
-The command launches an interactive menu. Selecting an item will install it, and deselecting it will uninstall it.
+By default, the command launches an interactive menu. Selecting an item will install it, and deselecting it will uninstall it.
+
+The following options are supported:
+- `--add <list>`: A comma-separated list of software items to install. Using this option runs the setup command in headless (non-interactive) mode. This option is mutually exclusive with `--file`.
+- `--file <path>`: Path to a YAML file containing a list of software items to install in headless mode. This option is mutually exclusive with `--add`.
+- `--save <path>`: Path to save the list of installed software (defaults to `$HOME/.config/devpack-for-spring/installed_config.yaml`).
+- `--uninstall`: A flag to uninstall unselected software items. In interactive mode, this removes any unchecked software. In headless mode, it uninstalls any software listed in the configuration file that is not specified in `--add` or `--file`.
 <br>
 <br>
 Create a new Spring Boot Project:
