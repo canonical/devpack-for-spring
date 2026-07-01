@@ -24,7 +24,9 @@ The following options are supported:
 - `--add <list>`: A comma-separated list of software items to install. Using this option runs the setup command in headless (non-interactive) mode. This option is mutually exclusive with `--file`.
 - `--file <path>`: Path to a YAML file containing a list of software items to install in headless mode. This option is mutually exclusive with `--add`.
 - `--save <path>`: Path to save the list of installed software (defaults to `$HOME/.config/devpack-for-spring/installed_config.yaml`).
+- `--save-only`: Do not update the host system, only save the install file.
 - `--uninstall`: A flag to uninstall unselected software items. In interactive mode, this removes any unchecked software. In headless mode, it uninstalls any software listed in the configuration file that is not specified in `--add` or `--file`.
+- `--retry`: Retry failing commands.
 <br>
 <br>
 Create a new Spring Boot Project:
@@ -38,21 +40,21 @@ Devpack for Spring provides prebuilt binaries of Spring Project libraries as sna
 List installed and available offline libraries:
 
 ```
-$ devpack-for-spring snap list
+$ devpack-for-spring libraries
 ```
 
 
 Install available libraries:
 
 ```
-$ devpack-for-spring snap install
+$ devpack-for-spring add-library
 ```
 
 
 Remove the installed libraries:
 
 ```
-$ devpack-for-spring snap remove
+$ devpack-for-spring remove-library
 ```
 
 ### Run build plugins
@@ -63,14 +65,14 @@ $ devpack-for-spring snap remove
 List the plugins configured in `devpack-for-spring`:
 
 ```
-devpack-for-spring list-plugins
+devpack-for-spring plugins
 ```
 
 
 Run this command in the project root to format the project source code:
 
 ```
-$ devpack-for-spring plugin format
+$ devpack-for-spring run format
 ```
 
 See [BuildPlugins](https://github.com/canonical/devpack-for-spring-cli/blob/main/BuildPlugins.md) for more information.
@@ -86,7 +88,7 @@ snap install rockcraft --classic
 `devpack-for-spring` includes Rockcraft plugin functionality to store dependencies offline:
 
 ```
-$ devpack-for-spring plugin dependencies
+$ devpack-for-spring run dependencies
 ```
 
 The output is stored in `target/build-rock/dependencies/` for Maven and `build/build-rock/dependencies/` for Gradle.
@@ -96,7 +98,7 @@ The Rockcraft plugin generates a chiselled build image - an OCI image that inclu
 The image can be uploaded to the local Docker daemon with:
 
 ```
-$ devpack-for-spring plugin rockcraft push-build-rock
+$ devpack-for-spring run rockcraft push-build-rock
 ```
 
 The image name is `build-<your-project-name>`:
@@ -155,21 +157,21 @@ To use the build rock as a devcontainer in Visual Studio Code, add the following
 To build the chiselled runtime image of the Spring Boot application run:
 
 ```
-$ devpack-for-spring plugin rockcraft build-rock
+$ devpack-for-spring run rockcraft build-rock
 ```
 
 To push the image to the local docker daemon, execute:
 
 ```
-$ devpack-for-spring plugin rockcraft push-rock
+$ devpack-for-spring run rockcraft push-rock
 ```
 
 The image is tagged `<your-project-name>:latest`,`<your-project-name>:<your-project-version>`.
 
 ## Limitations/Known issues
 
-- The 'plugin' command for Gradle projects supports only Gradle 8.4 and up.
-- The 'plugin' command requires the Gradle project to be configurable.
-- The 'plugin dependencies' command includes Rockcraft plugin dependencies.
-- The 'plugin dependencies' command depends on the jar task.
+- The 'run' command for Gradle projects supports only Gradle 8.4 and up.
+- The 'run' command requires the Gradle project to be configurable.
+- The 'run dependencies' command includes Rockcraft plugin dependencies.
+- The 'run dependencies' command depends on the jar task.
 - The rock export assumes Java 21 by default if the project toolchain settings are not configured.
