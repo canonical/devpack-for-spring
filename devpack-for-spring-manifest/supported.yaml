@@ -1,5 +1,20 @@
 version: 2
 content-snaps:
+  content-for-spring-boot-41:
+    upstream: https://github.com/spring-projects/spring-boot
+    version: spring-boot-41
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: n/a
+    name: content-for-spring-boot-41
+    summary: Rebuild of Spring® Boot Framework sources v4.1.x
+    description: |
+      Rebuild of Spring® Boot Framework sources v4.1.x
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: false
+    build-jdk: ["openjdk-25-jdk-headless"]
+
   content-for-spring-boot-40:
     upstream: https://github.com/spring-projects/spring-boot
     version: spring-boot-40
@@ -120,6 +135,21 @@ content-snaps:
     summary: Rebuild of Spring® AI sources v1.1.x
     description: |
       Rebuild of Spring® AI sources v1.1.x.
+      Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
+    license: Apache-2.0
+    lts: true
+
+  content-for-spring-ai-20:
+    upstream: https://github.com/spring-projects/spring-ai
+    version: spring-ai-11
+    channel: latest/edge
+    mount: /maven-repo
+    oss-eol: n/a
+    name: content-for-spring-ai-20
+    build-jdk: ["openjdk-21-jdk"]
+    summary: Rebuild of Spring® AI sources v2.0.x
+    description: |
+      Rebuild of Spring® AI sources v2.0.x.
       Spring is a trademark of Broadcom Inc. and/or its subsidiaries.
     license: Apache-2.0
     lts: true
