@@ -2,17 +2,17 @@ summary: check that devpack for spring can install content snaps
 
 execute: |
   set -ex
-  SNAPS=`devpack-for-spring snap list | grep content | awk -F'│' '{ print $3 }'`
+  SNAPS=`devpack-for-spring libraries | grep content | awk -F'│' '{ print $3 }'`
   for snap in $SNAPS; do
     # install snap
-    devpack-for-spring snap install $snap
-    devpack-for-spring snap list | grep $snap | grep '✓'
+    devpack-for-spring add-library $snap
+    devpack-for-spring libraries | grep $snap | grep '✓'
     # regenerate configuration
-    devpack-for-spring snap setup-gradle
-    devpack-for-spring snap setup-maven
+    devpack-for-spring setup-gradle
+    devpack-for-spring setup-gradle
     # remove snap
-    devpack-for-spring snap remove $snap
+    devpack-for-spring remove-library $snap
     # regenerate configuration
-    devpack-for-spring snap setup-gradle
-    devpack-for-spring snap setup-maven
+    devpack-for-spring setup-gradle
+    devpack-for-spring setup-gradle
   done
