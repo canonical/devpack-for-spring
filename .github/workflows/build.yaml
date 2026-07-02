@@ -17,15 +17,19 @@ jobs:
     strategy:
       matrix:
         arch: [arm64, amd64]
-    runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         id: checkout
-
+      - uses: actions/setup-java@v5
+        with:
+            distribution: 'temurin'
+            java-version: '21'
+            cache: 'maven'
       - name: Run content snap generator
         id: gen-content
         run: |
-          sudo apt-get update && sudo apt-get install -y make maven openjdk-21-jdk-headless
+          sudo apt-get update && sudo apt-get install -y make maven openjdk-25-jdk-headless
           make prepare
 
       - name: Build devpack

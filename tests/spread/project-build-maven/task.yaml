@@ -4,7 +4,7 @@ execute: |
   set -ex
   # use snap-provided JVM
   export PATH=$PATH:/snap/devpack-for-spring/current/usr/bin/
-  devpack-for-spring snap install content-for-spring-boot-35
+  devpack-for-spring add-library content-for-spring-boot-35
   BOOT_VERSION=`snap info  content-for-spring-boot-35 | grep "installed:" | awk -F' ' '{ print $2}'`
   devpack-for-spring boot start --path foo --project maven-project \
    --language java --boot-version $BOOT_VERSION --group sample \
