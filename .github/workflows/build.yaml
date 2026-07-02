@@ -25,6 +25,7 @@ jobs:
       - name: Run content snap generator
         id: gen-content
         run: |
+          unset JAVA_HOME
           sudo apt-get update && sudo apt-get install -y make maven openjdk-25-jdk-headless
           make prepare
 
