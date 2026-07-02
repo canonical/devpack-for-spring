@@ -78,7 +78,7 @@ parts:
         --enable-native-access=ALL-UNNAMED \
         -Dspring.aot.enabled=true \
         -Dio.netty.noUnsafe=true \
-        -cp "cli/devpack-for-spring-cli.jar:$CLASSPATH" org.springframework.cli.DevpackForSpringCliApplication list-plugins
+        -cp "cli/devpack-for-spring-cli.jar:$CLASSPATH" org.springframework.cli.DevpackForSpringCliApplication plugins
 
       craftctl default
 
