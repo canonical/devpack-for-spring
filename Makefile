@@ -5,6 +5,8 @@ all: build
 build: $(SNAP_DIRS)
 
 prepare:
+	echo "Java Home: $$JAVA_HOME"
+	echo "Java version $(shell java --version)"
 	(cd content-snap-generator && mvn package)
 	java -jar content-snap-generator/target/content-snap-generator-1.0-shaded.jar \
 		-m devpack-for-spring-manifest/supported.yaml \
