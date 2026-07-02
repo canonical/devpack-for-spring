@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         arch: [arm64, amd64]
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
     steps:
       - uses: actions/checkout@v7
         id: checkout
@@ -60,7 +60,7 @@ jobs:
 
 
   snapcraft-publish:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
     if: ${{ (contains(fromJSON('["push"]'), github.event_name) && github.ref_name == 'main') || contains(fromJSON('["workflow_dispatch"]'), github.event_name)  }}
     needs: snapcraft-build
     strategy:
