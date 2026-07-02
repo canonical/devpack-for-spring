@@ -8,11 +8,11 @@ execute: |
     devpack-for-spring add-library $snap
     devpack-for-spring libraries | grep $snap | grep '✓'
     # regenerate configuration
-    devpack-for-spring setup-gradle
-    devpack-for-spring setup-gradle
+    devpack-for-spring gradle-libraries
+    devpack-for-spring maven-libraries
     # remove snap
     devpack-for-spring remove-library $snap
     # regenerate configuration
-    devpack-for-spring setup-gradle
-    devpack-for-spring setup-gradle
+    devpack-for-spring gradle-libraries
+    devpack-for-spring maven-libraries
   done
