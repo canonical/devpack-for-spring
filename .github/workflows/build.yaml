@@ -17,7 +17,7 @@ jobs:
     strategy:
       matrix:
         arch: [arm64, amd64]
-    runs-on: self-hosted-linux-${{ matrix.arch }}-noble-large
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
         id: checkout
