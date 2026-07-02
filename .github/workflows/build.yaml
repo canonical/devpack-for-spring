@@ -25,7 +25,7 @@ jobs:
       - name: Run content snap generator
         id: gen-content
         run: |
-          sudo apt-get update && sudo apt-get install -y make maven openjdk-21-jdk-headless
+          sudo apt-get update && sudo apt-get install -y make maven openjdk-25-jdk-headless
           make prepare
 
       - name: Build devpack
