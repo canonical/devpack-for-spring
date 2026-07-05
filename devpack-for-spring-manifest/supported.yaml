@@ -47,7 +47,7 @@ content-snaps:
 
   content-for-spring-ai-20:
     upstream: https://github.com/spring-projects/spring-ai
-    version: spring-ai-11
+    version: spring-ai-20
     channel: latest/edge
     mount: /maven-repo
     oss-eol: n/a
