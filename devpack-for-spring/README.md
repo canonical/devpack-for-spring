@@ -183,7 +183,7 @@ You can set the following optional environment variables:
 `devpack-for-spring` supports environment variables `http_proxy`, `https_proxy` and `no_proxy` with the
 following limitations:
 - `no_proxy` - CIDR entries are not supported, '*' wildcard is ignored.
-- HTTPS proxies that use non-standard certificates require an up-to-date Java trust store - install any openjdk package and update the host's Java keystore:
+- HTTPS proxies that use non-standard certificates require an up-to-date Java trust store - install any openjdk package and update the host's Java trust store:
 ```
 $ apt install default-jre-headless
 $ update-ca-certificates -f
