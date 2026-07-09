@@ -168,6 +168,27 @@ $ devpack-for-spring run rockcraft push-rock
 
 The image is tagged `<your-project-name>:latest`,`<your-project-name>:<your-project-version>`.
 
+## Environment variables
+
+You can set the following optional environment variables:
+
+- `SPRING_CLI_SETUP_COMMANDS_CONFIGURATION` - path configuration file for `devpack-for-spring setup`,
+   defaults to `/snap/devpack-for-spring/current/setup-configuration.yaml`.
+- `DEVPACK_FOR_SPRING_KEYSTORE` - path to the Java trust store to use for HTTPS connections, defaults to `/etc/ssl/certs/java/cacerts` if that file exists on the host, otherwise no trust store override is passed and the embedded JVM's default trust store is used.
+- `DEVPACK_FOR_SPRING_DEBUG_FLAG` - disables AOT cache, injects JVM arguments into `devpack-for-spring` command.
+- `DEVPACK_FOR_SPRING_JAVA_HOME` - alternative JAVA_HOME (minimum Java 25).
+
+## Proxy support
+
+`devpack-for-spring` supports environment variables `http_proxy`, `https_proxy` and `no_proxy` with the
+following limitations:
+- `no_proxy` - CIDR entries are not supported, '*' wildcard is ignored.
+- HTTPS proxies that use non-standard certificates require an up-to-date Java trust store - install any openjdk package and update the host's Java trust store:
+```
+$ apt install default-jre-headless
+$ update-ca-certificates -f
+```
+
 ## Limitations/Known issues
 
 - The 'run' command for Gradle projects supports only Gradle 8.4 and up.
