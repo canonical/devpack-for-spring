@@ -2,6 +2,7 @@
 set -e
 export SPRING_CLI_SETUP_COMMANDS_CONFIGURATION=${SPRING_CLI_SETUP_COMMANDS_CONFIGURATION:-/snap/devpack-for-spring/current/setup-configuration.yaml}
 
+DEFAULT_KEYSTORE=""
 if [ -f /etc/ssl/certs/java/cacerts ] || [ -n "$DEVPACK_FOR_SPRING_KEYSTORE" ]; then
   DEFAULT_KEYSTORE="-Djavax.net.ssl.trustStore=${DEVPACK_FOR_SPRING_KEYSTORE:-/etc/ssl/certs/java/cacerts}"
 fi
@@ -16,7 +17,7 @@ if [ -n "$DEVPACK_FOR_SPRING_DEBUG_FLAG" ]; then
     set -ex
 fi
 
-JAVA="${DEVPACK_FOR_SPRING_JAVA_HOME:-$SNAP/usr/}/bin/java"
+JAVA="${DEVPACK_FOR_SPRING_JAVA_HOME:-$SNAP/usr}/bin/java"
 
 "$JAVA" \
     $DEFAULT_KEYSTORE \
