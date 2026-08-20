@@ -1,5 +1,5 @@
 [libraries]
-spring-boot-41 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "4.1.0" }
-spring-boot-40 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "4.0.7" }
-spring-core-70 = { group = "org.springframework", name = "spring-core", version = "7.0.8" }
-spring-ai-20 = { group = "org.springframework.ai", name = "spring-ai-model", version = "2.0.0" }
+spring-boot-41 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "4.1.1" }
+spring-boot-40 = { group = "org.springframework.boot", name = "spring-boot-dependencies", version = "4.0.8" }
+spring-core-70 = { group = "org.springframework", name = "spring-core", version = "7.0.9" }
+spring-ai-20 = { group = "org.springframework.ai", name = "spring-ai-model", version = "2.0.1" }
