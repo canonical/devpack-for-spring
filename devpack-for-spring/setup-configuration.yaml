@@ -16,6 +16,8 @@ java:
         description: OpenJDK 17
     - openjdk-21-jdk:
         description: OpenJDK 21
+    - openjdk-25-jdk:
+        description: OpenJDK 25
   # snap packages to install
   snap:
     # snap name
@@ -50,6 +52,9 @@ docker:
           - sudo snap connect docker:home
           - sudo snap disable docker
           - sudo snap enable docker
+          - sudo addgroup --system docker
+          - grep -qE 'docker.*'$USER /etc/group || sudo adduser --quiet $USER docker
+          - newgrp docker
 ide:
   description: Integrated Development Environment
   multiselect: true
