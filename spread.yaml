@@ -15,8 +15,8 @@ suites:
 
 prepare: |
   set -ex
-  apt update
-  apt install -y retry openjdk-17-jdk-headless
+  apt-get update
+  apt-get install -y retry openjdk-17-jdk-headless openssl iptables ca-certificates squid-openssl
   # install local devpack
   for x in `find devpack-for-spring -name *.snap -print`; do
     retry --times=10 --delay 10 -- snap install --dangerous --classic $x
@@ -26,5 +26,69 @@ prepare: |
   # install local manifest
   find devpack-for-spring-manifest -name *.snap -exec snap install --dangerous --classic {} \;
   # install openjdk
-  apt update
-  apt install -y openjdk-21-jdk
+  apt-get update
+  apt-get install -y openjdk-21-jdk
+
+  # set up squid for proxy tests
+  CERT_DIR="/etc/squid/certs"
+  mkdir -p "$CERT_DIR"
+
+  if [ ! -f "$CERT_DIR/squid.pem" ]; then
+      openssl req -new -newkey rsa:2048 -days 365 -nodes -x509 \
+        -subj "/C=US/ST=State/L=City/O=Testing/CN=SquidCA" \
+        -keyout "$CERT_DIR/squid.key" -out "$CERT_DIR/squid.crt"
+
+      # Combine them for Squid
+      cat "$CERT_DIR/squid.crt" "$CERT_DIR/squid.key" > "$CERT_DIR/squid.pem"
+      chmod 400 "$CERT_DIR/squid.pem"
+      chown -R proxy:proxy "$CERT_DIR"
+  fi
+
+  rm -rf /var/lib/squid/ssl_db
+  mkdir -p /var/lib/squid
+  chown -R proxy:proxy /var/lib/squid
+  /usr/lib/squid/security_file_certgen -c -s /var/lib/squid/ssl_db -M 4MB
+
+  SQUID_CONF="/etc/squid/squid.conf"
+
+  cat << 'EOF' > "$SQUID_CONF"
+  # Define local network access
+  acl localnet src 0.0.0.1-0.255.255.255
+  acl localnet src 10.0.0.0/8
+  acl localnet src 172.16.0.0/12
+  acl localnet src 192.168.0.0/16
+  acl localnet src fc00::/7
+  acl localnet src fe80::/10
+
+  acl SSL_ports port 443
+  acl Safe_ports port 80		# http
+  acl Safe_ports port 443		# https
+
+  http_access deny !Safe_ports
+  http_access allow localhost manager
+  http_access deny manager
+  http_access allow localnet
+  http_access allow localhost
+  http_access deny all
+
+  # --- SSL-Bump Configuration ---
+  http_port 3128 ssl-bump cert=/etc/squid/certs/squid.pem generate-host-certificates=on dynamic_cert_mem_cache_size=4MB
+
+  # Configure SSL-Bump steps
+  acl step1 at_step SslBump1
+  ssl_bump peek step1
+  ssl_bump bump all
+
+  # SSL database helper program
+  sslcrtd_program /usr/lib/squid/security_file_certgen -s /var/lib/squid/ssl_db -M 4MB
+
+  coredump_dir /var/spool/squid
+  EOF
+
+  # Restart Squid to apply SSL-Bump configuration
+  systemctl restart squid
+
+  # Applications using the proxy must trust Squid's self-signed CA certificate,
+  # otherwise HTTPS requests will fail with "SSL Certificate Untrusted" errors.
+  cp "$CERT_DIR/squid.crt" /usr/local/share/ca-certificates/squid-ca.crt
+  update-ca-certificates -f
