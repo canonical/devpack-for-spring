@@ -53,8 +53,8 @@ docker:
           - sudo snap disable docker
           - sudo snap enable docker
           - sudo addgroup --system docker
-          - grep -qE 'docker.*'$USER /etc/group || sudo adduser --quiet $USER docker
-          - newgrp docker
+          - sudo usermod -aG docker ${user.name}
+          - echo Please logout and login or run 'newgrp docker' to apply the group changes.
 ide:
   description: Integrated Development Environment
   multiselect: true
