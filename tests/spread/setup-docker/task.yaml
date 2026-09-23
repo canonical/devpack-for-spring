@@ -1,0 +1,5 @@
+summary: check that devpack for spring docker library installs correctly
+
+execute: |
+  set -ex
+  bash docker.sh

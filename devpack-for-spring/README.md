@@ -26,7 +26,7 @@ The following options are supported:
 - `--save <path>`: Path to save the list of installed software (defaults to `$HOME/.config/devpack-for-spring/installed_config.yaml`).
 - `--save-only`: Do not update the host system, only save the install file.
 - `--uninstall`: A flag to uninstall unselected software items. In interactive mode, this removes any unchecked software. In headless mode, it uninstalls any software listed in the configuration file that is not specified in `--add` or `--file`.
-- `--retry`: Retry failing commands.
+- `--retry`: Retry failing commands. Expects a numeric number of attempts where `--retry=-1` retries indefinitely, and `--retry=n` retries `n` number of times extra.
 <br>
 <br>
 Create a new Spring Boot Project:
