@@ -1,0 +1,5 @@
+summary: integration testing of devpack for spring "--retry" option
+
+execute: |
+  set -ex
+  bash retry.sh

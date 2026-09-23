@@ -3,3 +3,6 @@ summary: check that devpack for spring can handle proxy access
 execute: |
   set -ex
   bash proxy.sh
+
+restore: |
+  bash rollback.sh
